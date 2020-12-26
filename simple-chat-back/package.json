@@ -1,14 +1,49 @@
 {
-  "name": "simple-chat-back",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "cookie-parser": "^1.4.5",
-    "debug": "^2.6.9",
-    "express": "^4.16.4",
-    "morgan": "^1.9.1"
-  }
+    "name": "simple-chat-back",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www",
+        "lint": "eslint --ext .js ."
+    },
+    "dependencies": {
+        "cookie-parser": "^1.4.5",
+        "debug": "^2.6.9",
+        "express": "^4.16.4",
+        "morgan": "^1.9.1"
+    },
+    "devDependencies": {
+        "eslint": "^7.16.0",
+        "eslint-config-recommended": "^4.1.0",
+        "eslint-plugin-import": "^2.22.1"
+    },
+    "eslintConfig": {
+        "extends": "recommended/node",
+        "env": {
+            "es6": true,
+            "browser": false
+        },
+        "rules": {
+            "brace-style": [
+                "error",
+                "stroustrup"
+            ],
+            "comma-dangle": [
+                "error",
+                "never"
+            ],
+            "no-unused-vars": [
+                "warn"
+            ],
+            "no-var": [
+                "off"
+            ],
+            "one-var": [
+                "off"
+            ],
+            "import/no-commonjs": [
+              "off"
+            ]
+        }
+    }
 }
