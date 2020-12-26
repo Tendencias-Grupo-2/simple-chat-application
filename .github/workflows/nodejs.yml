@@ -13,39 +13,38 @@ on:
 
 jobs:
   # Backend CI
-  # TODO: Activate this when the backend starts being developed
-  # Backend:
-  #   runs-on: ubuntu-latest
+  Backend:
+    runs-on: ubuntu-latest
 
-  #   strategy:
-  #     matrix:
-  #       node-version: [10.x]
+    strategy:
+      matrix:
+        node-version: [14.x]
 
-  #   services:
-  #     localhost:
-  #       image: mongo:4.2
-  #       ports:
-  #         - 27017:27017
+    # services:
+    #   localhost:
+    #     image: mongo:4.2
+    #     ports:
+    #       - 27017:27017
 
-  #   steps:
-  #     - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-  #     - name: Use Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-  #     - name: Install dependencies
-  #       working-directory: backend
-  #       run: yarn
+      - name: Install dependencies
+        working-directory: simple-chat-back
+        run: npm install
 
-  #     - name: Running lint
-  #       working-directory: backend
-  #       run: yarn lint
+      - name: Running lint
+        working-directory: simple-chat-back
+        run: npm run lint
 
-  #     - name: Running prod build
-  #       working-directory: backend
-  #       run: yarn build:prod
+      # - name: Running prod build
+        # working-directory: simple-chat-back
+        # run: npm run build:prod
 
   # Frontend CI
   Frontend:
