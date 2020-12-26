@@ -13,4 +13,6 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 
-module.exports = app;
+app.listen(3000, () => {
+  console.log(`Listening to requests on http://localhost:${3000}`);
+});
