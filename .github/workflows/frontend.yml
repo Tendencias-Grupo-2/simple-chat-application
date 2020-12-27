@@ -45,6 +45,5 @@ jobs:
 
       - name: Security audit
         working-directory: simple-chat-front
-        with:
-          node-version: ${{ matrix.node-version }}
-        run: npm audit
+        run: npm install -g npm-audit-helper 
+        run: npm audit --json
