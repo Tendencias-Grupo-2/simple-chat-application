@@ -45,6 +45,6 @@ jobs:
 
       - name: Security audit
         working-directory: simple-chat-front
-        run: npm audit
         with:
           node-version: ${{ matrix.node-version }}
+        run: npm audit
