@@ -1,0 +1,80 @@
+.userinput__debug{
+    display: none;
+}
+
+.userinput{
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    background-color: white;
+    width: 25%;
+    height: 25%;
+    padding: 25px;
+    border-radius: 20px; 
+}
+
+.userinput__title{
+    color: #3F4045;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.userinput__form{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.userinput__forminput{
+    height: 50px;
+    width: 90%;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 10px;
+    background-color: #F3F3F3;
+    color: #5D737E;
+    padding: 10px;
+}
+
+.userinput__action{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.userinput__btn{
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    width: 155px;
+    height: 55px;
+    border: none;
+    cursor: pointer;
+}
+
+.userinput__btn--join{
+    background-color: #1A9988;
+    margin-right: 22px;
+
+}
+
+.userinput__btn--join:hover{
+    background-color: #1eb6a2;
+}
+
+.userinput__btn--clear{
+    background-color: #EB5600;
+}
+
+.userinput__btn--clear:hover{
+    background-color: #f37831;
+}
+
+@media only screen and (max-width: 600px) {
+    .userinput {
+        width: 80%;
+    }
+  }
