@@ -34,3 +34,12 @@ jobs:
       - name: Running lint
         working-directory: simple-chat-front
         run: npm run lint
+      
+      - name: Running tests
+        working-directory: simple-chat-front
+        run: npm run test:nowatch
+      
+      - name: Running coverage
+        working-directory: simple-chat-front
+        run: npm run test -- --coverage --watchAll=false
+      
