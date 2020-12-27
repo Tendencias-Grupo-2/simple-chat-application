@@ -5,10 +5,10 @@ name: Main CI - Frontend
 
 on:
   push:
+    paths:
+    - 'simple-chat-front'
     branches:
       - "*"
-    paths:
-    - 'simple-chat-front/**'
 
 jobs:
   # Frontend CI

@@ -2,10 +2,10 @@ name: 'Heroku deploy'
 
 on:
   push:
+    paths:
+    - 'simple-chat-back'
     branches:
       - master
-    paths:
-    - 'simple-chat-back/**'
 
 jobs:
   DeployHeroku:
