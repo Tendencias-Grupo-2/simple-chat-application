@@ -16,5 +16,5 @@ app.use('/', indexRouter);
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log(`Listening to requests on http://localhost:${port}`);
+  console.log(`Listening to request on http://localhost:${port}`);
 });

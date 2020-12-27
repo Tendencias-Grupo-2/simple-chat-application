@@ -6,7 +6,7 @@ name: Main CI - Backend
 on:
   push:
     paths:
-    - 'simple-chat-back'
+    - 'simple-chat-back/**'
     branches:
       - "*"
 
