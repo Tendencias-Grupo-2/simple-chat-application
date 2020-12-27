@@ -6,7 +6,7 @@ name: Main CI - Frontend
 on:
   push:
     paths:
-    - 'simple-chat-front/**'
+      - "simple-chat-front/**"
     branches:
       - "*"
 
@@ -34,12 +34,15 @@ jobs:
       - name: Running lint
         working-directory: simple-chat-front
         run: npm run lint
-      
+
       - name: Running tests
         working-directory: simple-chat-front
         run: npm run test:nowatch
-      
+
       - name: Running coverage
         working-directory: simple-chat-front
         run: npm run test -- --coverage --watchAll=false
-      
+
+      - name: Security audit
+        working-directory: simple-chat-fromt
+        run: npm audit
