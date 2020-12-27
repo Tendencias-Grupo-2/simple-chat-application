@@ -44,5 +44,5 @@ jobs:
         run: npm run test -- --coverage --watchAll=false
 
       - name: Security audit
-        working-directory: simple-chat-fromt
+        working-directory: simple-chat-front
         run: npm audit
