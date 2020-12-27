@@ -3,7 +3,7 @@ name: 'Heroku deploy'
 on:
   push:
     paths:
-    - 'simple-chat-back'
+    - 'simple-chat-back/**'
     branches:
       - master
 
