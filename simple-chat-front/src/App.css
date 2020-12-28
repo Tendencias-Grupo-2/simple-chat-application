@@ -1,10 +1,10 @@
-*{
-  font-family: 'Montserrat', sans-serif;
+* {
+  font-family: "Montserrat", sans-serif;
 }
 
 .App {
   text-align: center;
-  background-color:#272126 ;
+  background-color: #272126;
   height: 100vh;
   display: flex;
   justify-content: center;
