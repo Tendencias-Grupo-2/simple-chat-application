@@ -10,7 +10,8 @@ router.get("/users", async (req, res) =>{
               return res.status(404).send()
            }
           res.send(user) 
-       }catch(error){
+       }
+       catch(error){
           res.status(500).send()
        }
   })
@@ -20,7 +21,8 @@ router.get("/users", async (req, res) =>{
     try{
         await user.save()
         res.status(201).send(user)
-    } catch(error){
+    } 
+    catch(error){
         res.status(400).send(error)
     }
   })
