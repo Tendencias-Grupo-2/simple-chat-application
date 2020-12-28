@@ -42,8 +42,12 @@ jobs:
       - name: Running coverage
         working-directory: simple-chat-front
         run: npm run test -- --coverage --watchAll=false
-
-      - name: Security audit
-        working-directory: simple-chat-front
-        run: npm install -g npm-audit-helper 
-        run: npm audit --json
+        
+      -name: Security audit
+      script:
+          npm install -g npm-audit-helper
+          npm audit --json | npm-audit-helper --prod-only
+      # - name: Security audit
+      #   working-directory: simple-chat-front
+      #   run: npm install -g npm-audit-helper 
+      #   run: npm audit --json
