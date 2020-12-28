@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/aws/aws-lambda-go v1.21.0
+	github.com/aws/aws-sdk-go v1.34.28
 	github.com/craiggwilson/goke v0.0.0-20200309222237-69a77cdfe646 // indirect
 	github.com/jessevdk/go-flags v1.4.0 // indirect
 	github.com/mongodb/mongo-tools v0.0.0-20201214200253-dca14b998f38

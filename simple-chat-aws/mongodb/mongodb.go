@@ -41,12 +41,13 @@ func NewClient(username, password, serverName string) (*Client, error) {
 }
 
 // Backup backups all the tables to a file
-func (cl *Client) Backup() error {
+func (cl *Client) Backup(backupFileName, backupPath string) error {
+	backupFullPath := fmt.Sprintf("%s/%s", backupPath, backupFileName)
 
 	cmd := exec.Command("./mongodump", "--archive=-", "--uri="+cl.ConnectionString)
 
 	// open the out file for writing
-	outfile, err := os.Create("/tmp/backup.gz")
+	outfile, err := os.Create(backupFullPath)
 	if err != nil {
 		panic(err)
 	}
