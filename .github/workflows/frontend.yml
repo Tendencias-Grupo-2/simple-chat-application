@@ -43,7 +43,7 @@ jobs:
         working-directory: simple-chat-front
         run: npm run test -- --coverage --watchAll=false
       
-      -name: Security audit
+      - name: Security audit
       script:
           npm install -g npm-audit-helper
           npm audit --json | npm-audit-helper --prod-only
