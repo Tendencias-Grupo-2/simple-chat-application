@@ -42,7 +42,7 @@ jobs:
       - name: Running coverage
         working-directory: simple-chat-front
         run: npm run test -- --coverage --watchAll=false
-        
+      
       -name: Security audit
       script:
           npm install -g npm-audit-helper
