@@ -21,7 +21,7 @@
     "test:nowatch": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "lint": "eslint src/",
-    "audit": "audit-ci"
+    "audit": "audit-ci --high"
   },
   "eslintConfig": {
     "extends": [
