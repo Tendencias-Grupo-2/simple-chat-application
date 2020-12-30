@@ -5,7 +5,7 @@ import UserNameInput from './components/UserNameInput/UserNameInput';
 function App() {
   return (
     <div className="App">
-      {/* <UserNameInput /> */}
+      <UserNameInput />
       <Chat></Chat>
     </div>
   );
