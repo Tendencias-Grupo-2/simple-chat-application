@@ -6,6 +6,8 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
+    "audit": "0.0.6",
+    "audit-ci": "^3.1.1",
     "enzyme": "^3.11.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -18,13 +20,27 @@
     "test": "react-scripts test",
     "test:nowatch": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "audit": "audit-ci --high"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/components/**/*.{js,jsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    }
   },
   "browserslist": {
     "production": [
