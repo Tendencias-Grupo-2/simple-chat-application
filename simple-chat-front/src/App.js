@@ -1,4 +1,5 @@
 import './App.css';
+import Chat from './components/Chat/Chat';
 // import TestComponent from './components/TestComponent/TestComponent'
 import UserNameInput from './components/UserNameInput/UserNameInput';
 
@@ -6,6 +7,7 @@ function App() {
   return (
     <div className="App">
       <UserNameInput />
+      <Chat></Chat>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
