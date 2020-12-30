@@ -1,0 +1,33 @@
+.room{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    margin-bottom: 18px;
+    border-radius: 0px 10px 10px 0px;
+    -webkit-box-shadow: 2px 3px 16px -7px rgba(0,0,0,0.27); 
+    box-shadow: 2px 3px 16px -7px rgba(0,0,0,0.27);
+    cursor: pointer;
+    transition: all .7s ease-in-out;
+}
+
+.room--selected{
+    background-color: #D5D5D5;
+}
+
+.room__img{
+    border-radius: 50%;
+    border: #1A9988 2px solid;
+    margin: 10px 0px;
+}
+
+.room__name{
+    font-size: 18px;
+    font-weight: 700;
+    color: #272126;
+}
+
+.room:hover{
+    transform: scale(1.1);
+}
