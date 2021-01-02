@@ -9,4 +9,4 @@ RUN npm install
 
 COPY ./simple-chat-back/ .
 
-CMD ["npm", "start"]  
+CMD ["npm", "run", "dev"]
