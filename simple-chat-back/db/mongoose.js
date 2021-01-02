@@ -10,5 +10,5 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING,{
     useUnifiedTopology: true
 })
 mongoose.connection.on('connected', ()=>{
-    console.log('connected')
+    console.log('Connected')
 })
