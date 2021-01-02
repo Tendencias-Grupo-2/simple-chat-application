@@ -4,14 +4,13 @@ import apiRequests from "../../utils/apiRequests.js";
 
 const TestComponent = () => {
   const [value, setValue] = useState(0);
-  const [data, setData] = useState(0);
+  const [apiData, setApiData] = useState(0);
 
   useEffect(() => {
-    apiRequests().then((data) => {
-      setData(data);
+    apiRequests().then((apiData) => {
+      setApiData(apiData);
     });
   }, []);
-  console.log(data);
   return (
     <div>
       <h2>My testComponent</h2>
@@ -22,7 +21,7 @@ const TestComponent = () => {
       <button className="pressme-btnm" onClick={() => setValue(value - 1)}>
         Press Me
       </button>
-      <h4>Username: {data.login}</h4>
+      <h4>Username: {apiData.login}</h4>
     </div>
   );
 };
