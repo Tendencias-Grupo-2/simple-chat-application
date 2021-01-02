@@ -1,9 +1,9 @@
-name: 'Heroku deploy'
+name: "Heroku deploy"
 
 on:
   push:
     paths:
-    - 'simple-chat-back/**'
+      - "simple-chat-back/**"
     branches:
       - master
 
@@ -18,3 +18,6 @@ jobs:
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }} #Must be unique in Heroku
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           usedocker: true
+        env:
+          MONGODB_CONNECTION_STRING: ${{ secrets.MONGODB_CONNECTION_STRING }}
+          PORT: 3000
