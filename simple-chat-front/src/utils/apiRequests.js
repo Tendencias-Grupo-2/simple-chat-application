@@ -1,7 +1,12 @@
 import axios from "axios";
-
-const getData = () => {
-  axios.get("https://api.github.com/users/hacktivist123");
-};
-
-export default getData;
+export default function apiRequests() {
+  return axios
+    .get("https://api.github.com/users/AxcelEspinal")
+    .then((response) => {
+      const items = response.data;
+      return items;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
