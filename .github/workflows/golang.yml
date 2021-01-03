@@ -31,5 +31,5 @@ jobs:
       - name: Checking coverage
         working-directory: simple-chat-aws
         run: |
-          go install github.com/eltorocorp/drygopher/drygopher
-          cd simple-chat-aws && drygopher --standard 20.0
+          go test ./... -coverprofile cover.out 
+          go tool cover -func cover.out | grep total | awk '{print substr($3, 1, length($3)-1)}'
