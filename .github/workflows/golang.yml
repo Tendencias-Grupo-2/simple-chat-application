@@ -4,8 +4,8 @@ name: Main CI - Golang
 
 on:
   push:
-    # paths:
-    #   - "simple-chat-aws/**"
+    paths:
+      - "simple-chat-aws/**"
     branches:
       - "*"
 
