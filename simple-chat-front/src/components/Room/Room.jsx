@@ -1,9 +1,9 @@
 import React from 'react';
 import './Room-Style.css'
 
-const Room = ({ roomId }) => {
+const Room = ({ roomId, onClick }) => {
     return (
-        <div className='room'>
+        <div className='room' onClick={onClick} >
             <img className='room__img' src="http://placecorgi.com/75/75" alt="Corgi" />
             <span className='room__name'>Room #{roomId}</span>
         </div>
