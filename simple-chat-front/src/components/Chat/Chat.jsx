@@ -15,14 +15,10 @@ const Chat = () => {
             <div className='chat__header'>
                 {currentRoom !== "" ? (
                     <span className='chat__headertext'>Contact Name</span>
-                ) : (
-                        ""
-                    )}
+                ) : null}
                 {currentRoom !== "" ? (
                     <span className='chat__headertext chat__headertext--exit' onClick={() => setCurrentRoom("")}><BiExit />Exit Room</span>
-                ) : (
-                        ""
-                    )}
+                ) : null}
             </div>
             <div className='chat__body'>
                 {currentRoom !== "" ? (

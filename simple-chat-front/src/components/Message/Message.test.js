@@ -7,11 +7,6 @@ configure({ adapter: new Adapter() });
 
 describe("Message component Testing Suite", () => {
 
-    let wrapper;
-    beforeEach(() => {
-        wrapper = shallow(<Message />);
-    })
-
     it('renders without crashing', () => {
         const div = document.createElement('div');
         render(<Message />, div);
