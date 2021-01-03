@@ -41,6 +41,10 @@ jobs:
         working-directory: simple-chat-back
         run: npm run lint
 
+      - name: Security audit
+        working-directory: simple-chat-back
+        run: npm run audit
+
       # - name: Running prod build
         # working-directory: simple-chat-back
         # run: npm run build:prod
