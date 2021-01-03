@@ -2,7 +2,7 @@
 
 # TODO: For certain actions (.i.e testing, coverage) configure for only running on modified folders instead of the whole project
 
-name: Main CI - Backend
+name: Main CI - Golang
 
 on:
   push:
