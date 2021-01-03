@@ -45,10 +45,10 @@ jobs:
         working-directory: simple-chat-back
         run: npm run audit
 
-      -name: Running test
-       working-directory: simple-chat-back
-       run: npm test
-       
+      - name: Running test
+        working-directory: simple-chat-back
+        run: npm test
+
       # - name: Running prod build
         # working-directory: simple-chat-back
         # run: npm run build:prod

@@ -12,7 +12,6 @@ app.use(userRouter)
 app.use(indexRouter)
 
 
-
 app.listen(port, () => {
   console.log(`Listening to requests on http://localhost:${port}`);
 });
