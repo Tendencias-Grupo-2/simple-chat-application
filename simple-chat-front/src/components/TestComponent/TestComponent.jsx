@@ -1,9 +1,9 @@
-import { React, useState, useEffect, Component } from "react";
+import { React, useState } from "react";
 import "./TestComponent-Style.css";
 
 const TestComponent = () => {
   const [value, setValue] = useState(0);
-  
+
   return (
     <div>
       <h2>My testComponent</h2>
