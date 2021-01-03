@@ -1,0 +1,41 @@
+run:
+  timeout: 40s
+  tests: true
+
+linters-settings:
+  golint:
+    min-confidence: 0.3
+  gocyclo:
+    min-complexity: 9
+  gocognit:
+    min-complexity: 10
+  govet:
+    check-shadowing: true
+  errcheck:
+    asserts: true
+  wsl:
+    allow-assign-and-call: true
+    allow-cuddle-declarations: true
+    force-err-cuddling: true
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - gosimple
+    - golint
+    - gosec
+    - govet
+    - nakedret
+    - deadcode
+    - wsl
+    - dupl
+    - varcheck
+
+issues:
+  exclude-rules:
+    # Exclude some gosec messages
+    - linters:
+        - gosec
+      text: "[G104, G404]"
+  exclude-use-default: false

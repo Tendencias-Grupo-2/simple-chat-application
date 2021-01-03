@@ -21,7 +21,6 @@ func init() {
 
 // UploadObject method for upload elements in S3
 func UploadObject(ctx context.Context, bucket, path string, data []byte) error {
-
 	input := &s3.PutObjectInput{
 		Body:   bytes.NewReader(data),
 		Bucket: aws.String(bucket),

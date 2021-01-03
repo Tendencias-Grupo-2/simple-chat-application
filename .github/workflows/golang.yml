@@ -1,0 +1,33 @@
+# TODO: For certain actions (.i.e testing, coverage) configure for only running on modified folders instead of the whole project
+
+name: Main CI - Golang
+
+on:
+  push:
+    paths:
+      - "simple-chat-aws/**"
+    branches:
+      - "*"
+
+jobs:
+  Golang:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+
+      - name: Running golangci-lint linters
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.29
+          working-directory: simple-chat-aws
+          args: --config ../.golangci.yml
+          skip-go-installation: true
+
+      - name: Running tests
+        working-directory: simple-chat-aws
+        run: go test ./...
+
+      - name: Checking coverage
+        working-directory: simple-chat-aws
+        run: ../scripts/calculate_coverage.sh 60

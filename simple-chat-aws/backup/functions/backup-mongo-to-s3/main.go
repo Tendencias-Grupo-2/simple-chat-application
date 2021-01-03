@@ -30,15 +30,12 @@ var (
 )
 
 func apiGatewayHandler(ctx context.Context, request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
-
 	client, err := mongo.NewClient(mongoUsername, mongoPassword, mongoServer)
-
 	if err != nil {
 		return apigateway.NewErrorResponse(400, err), nil
 	}
 
 	err = client.Backup(backupFileName, backupPath)
-
 	if err != nil {
 		return apigateway.NewErrorResponse(500, err), nil
 	}

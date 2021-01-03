@@ -24,6 +24,7 @@ func NewErrorResponse(statusCode int, err error) *events.APIGatewayProxyResponse
 // NewJSONResponse creates a new JSON response given a serializable val
 func NewJSONResponse(statusCode int, val interface{}) *events.APIGatewayProxyResponse {
 	data, _ := json.Marshal(val)
+
 	return &events.APIGatewayProxyResponse{
 		StatusCode: statusCode,
 		Body:       string(data),
