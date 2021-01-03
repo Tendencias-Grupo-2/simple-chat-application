@@ -1,0 +1,36 @@
+# This workflow will check all the different go files modified, filter them by their folders and perform a series of test based on the changed folders.
+
+# TODO: For certain actions (.i.e testing, coverage) configure for only running on modified folders instead of the whole project
+
+name: Main CI - Backend
+
+on:
+  push:
+    # paths:
+    #   - "simple-chat-aws/**"
+    branches:
+      - "*"
+
+jobs:
+  Golang:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+
+      - name: Running golangci-lint linters
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.29
+          working-directory: simple-chat-aws
+          args: --config ../.golangci.yml
+
+      - name: Running tests
+        working-directory: simple-chat-aws
+        run: go test ./..
+
+      - name: Checking coverage
+        working-directory: simple-chat-aws
+        run: |
+          go get -u github.com/jokeyrhyme/go-coverage-threshold/cmd/go-coverage-threshold
+          go-coverage-threshold -threshold 60.0
