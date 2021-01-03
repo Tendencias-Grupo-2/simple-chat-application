@@ -31,5 +31,5 @@ jobs:
       - name: Checking coverage
         working-directory: simple-chat-aws
         run: |
-          go get github.com/jokeyrhyme/go-coverage-threshold/cmd/go-coverage-threshold 
-          go-coverage-threshold -threshold 0.0
+          go install github.com/eltorocorp/drygopher/drygopher
+          drygopher --standard 20.0

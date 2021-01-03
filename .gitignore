@@ -98,3 +98,5 @@ typings/
 
 tmp
 *.zip
+
+coveragepct
