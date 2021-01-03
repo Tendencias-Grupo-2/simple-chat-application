@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import React from 'react';
-import { configure, shallow } from 'enzyme';
+import { configure } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Message from './Message';
 configure({ adapter: new Adapter() });
