@@ -29,7 +29,6 @@ func NewClient(username, password, serverName string) (*Client, error) {
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(
 		connectionStr,
 	))
-
 	if err != nil {
 		return nil, err
 	}
@@ -53,6 +52,7 @@ func (cl *Client) Backup(backupFileName, backupPath string) error {
 	}
 
 	var errOutput bytes.Buffer
+
 	cmd.Stdout = outfile
 	cmd.Stderr = &errOutput
 
