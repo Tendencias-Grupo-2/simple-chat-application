@@ -8,7 +8,7 @@
         "dev": "nodemon app.js",
         "audit": "audit-ci --high",
         "test": "jest",
-        "coveralls": "npm test -- --coverage --watchAll=false"
+        "coverage": "npm test -- --coverage --watchAll=false"
 
     },
     "dependencies": {
