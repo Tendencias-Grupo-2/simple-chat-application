@@ -32,4 +32,4 @@ jobs:
         working-directory: simple-chat-aws
         run: |
           go install github.com/eltorocorp/drygopher/drygopher
-          drygopher --standard 20.0
+          cd simple-chat-aws && drygopher --standard 20.0
