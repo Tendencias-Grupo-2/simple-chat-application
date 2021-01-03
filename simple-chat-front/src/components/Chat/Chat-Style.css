@@ -8,7 +8,8 @@
 .chat__header{
     display: flex;
     align-items: center;
-    height: 60px;
+    justify-content: space-between;
+    height: 9%;
     width: 100%;
     background-color: #F3F3F3;
     border-radius: 20px 20px 0px 0px;
@@ -19,25 +20,50 @@
     margin-left: 45px;
     color: #272126;
     font-size: 26px;
-    font-weight: 700; 
+    font-weight: 800; 
+}
+
+.chat__headertext--exit{
+    margin-left: 0px;
+    margin-right: 45px;
+    color: #EB5600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.chat__headertext--exit:hover{
+    color: #fa7a30;
 }
 
 .chat__body{
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 100%;
+    height: 91%;
 }
 
 .chat__left{
     background-color: #fff;
     width: 75%;
     height: 100%;
-    border-radius: 0px 0px 0px 20px;
     display: flex;
     flex-flow: column;
     justify-content: center;
-    padding: 0px 70px;
+    border-radius: 0px 0px 0px 20px;
+}
+
+.chat__left--inner{
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: scroll;
+    border-radius: 0px 0px 0px 20px;
 }
 
 .chat__right{
@@ -54,6 +80,7 @@
     font-weight: 800;
     color: #EB5600;
     text-align: left;
+    margin: 0px 70px;
 }
 
 .chat__left--subtitle{
@@ -61,6 +88,42 @@
     font-weight: 800;
     color: #1A9988;
     text-align: left;
+    margin: 0px 70px;
+
+}
+
+.chat__bar{
+    display: flex;
+    width: 100%;
+    margin: 15px 0px;
+
+}
+
+.chat__barform{
+    width: 100%;
+    padding: 0px 70px;
+    display: flex;
+}
+
+.chat__barinput{
+    width: 100%;
+    height: 50px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    margin-right: 15px;
+    padding: 0px 10px;
+}
+
+.chat__barbtn{
+    width: 90px;
+    border: none;
+    background-color: #EB5600;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.chat__barbtn:hover{
+    background-color: #fa7a30;
 }
 
 @media only screen and (max-width: 1400px) {

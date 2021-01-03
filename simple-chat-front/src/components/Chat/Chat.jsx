@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import CreateRoom from '../Room/CreateRoom';
 import Room from '../Room/Room';
+import Message from '../Message/Message';
+import { BiMailSend, BiExit } from "react-icons/bi";
+
 import './Chat-Style.css'
 
 let roomsMockData = [
@@ -31,20 +34,84 @@ let roomsMockData = [
 ]
 
 
+let messagesMockData = [
+    {
+        "id": "1",
+        "content": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione maxime tenetur ullam quis error impedit exercitationem dicta suscipit, voluptatibus dolore!",
+        "imSender": true
+    },
+    {
+        "id": "2",
+        "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias vitae veniam deleniti repellendus ab iusto neque nobis aliquid quasi unde repellat accusantium ducimus, iure modi ea, placeat quas similique eligendi sequi facere? Odio sint earum assumenda. Modi tempora qui totam asperiores eius autem, aperiam id minus ducimus facilis accusantium quaerat!",
+        "imSender": false
+    },
+    {
+        "id": "3",
+        "content": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus, error!",
+        "imSender": false
+    },
+    {
+        "id": "4",
+        "content": "Lorem ipsum dolor sit amet.",
+        "imSender": true
+    },
+    {
+        "id": "5",
+        "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio est aut culpa inventore cum animi cupiditate officia unde eveniet sed?",
+        "imSender": true
+    },
+    {
+        "id": "6",
+        "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio est aut culpa inventore cum animi cupiditate officia unde eveniet sed?",
+        "imSender": true
+    },
+    {
+        "id": "7",
+        "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio est aut culpa inventore cum animi cupiditate officia unde eveniet sed?",
+        "imSender": false
+    }
+
+]
+
+
 const Chat = () => {
     const [currentRoom, setCurrentRoom] = useState("");
 
     return (
         <div className='chat'>
             <div className='chat__header'>
-                <span className='chat__headertext'>Contact Name</span>
-                <span onClick={() => setCurrentRoom("")}>Exit Room</span>
+                {currentRoom !== "" ? (
+                    <span className='chat__headertext'>Contact Name</span>
+                ) : (
+                        ""
+                    )}
+                {currentRoom !== "" ? (
+                    <span className='chat__headertext chat__headertext--exit' onClick={() => setCurrentRoom("")}><BiExit />Exit Room</span>
+                ) : (
+                        ""
+                    )}
             </div>
             <div className='chat__body'>
-                {currentRoom === "" ? (
+                {currentRoom !== "" ? (
                     <div className='chat__left'>
-                        <span></span>
+                        <div className='chat__left--inner'>
+                            {messagesMockData.map((message) => (
+                                <Message
+                                    key={message.id}
+                                    content={message.content}
+                                    imSender={message.imSender}
+                                >
+                                </Message>
+                            ))}
+                        </div>
+                        <div className='chat__bar'>
+                            <form action="" className='chat__barform'>
+                                <input className='chat__barinput' type="text" />
+                                <button className="chat__barbtn"><BiMailSend size="25" color="#FFF" /></button>
+                            </form>
+                        </div>
                     </div>
+
                 ) :
                     (
                         <div className='chat__left'>
@@ -56,6 +123,7 @@ const Chat = () => {
                     <CreateRoom />
                     {roomsMockData.map((room) => (
                         <Room
+                            key={room.RoomId}
                             isRoomSelected={room.RoomId === currentRoom}
                             roomId={room.RoomId}
                             onClick={() => {
