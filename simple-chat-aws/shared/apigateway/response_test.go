@@ -12,7 +12,7 @@ func TestNewErrorResponseKnownError(t *testing.T) {
 
 	response := NewErrorResponse(404, errors.New("resource not found"))
 	c.Equal(404, response.StatusCode)
-	c.JSONEq(`{"http_code":404,"message":"Resource not found"}`, response.Body)
+	c.JSONEq(`{"http_code":404,"message":"resource not found"}`, response.Body)
 }
 
 func TestNewJSONResponse(t *testing.T) {
