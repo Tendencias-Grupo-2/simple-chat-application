@@ -18,7 +18,7 @@ describe("Message component Testing Suite", () => {
     });
 
 
-    // it('renders the room name `Room #N`', () => {
+    // it('renders the message time correctly `', () => {                           -> this test will be done once we have backend integration
     //     expect(wrapper.find('.room__name').text()).toContain("Room #");
     // });
 

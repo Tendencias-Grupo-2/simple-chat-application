@@ -3,76 +3,9 @@ import CreateRoom from '../Room/CreateRoom';
 import Room from '../Room/Room';
 import Message from '../Message/Message';
 import { BiMailSend, BiExit } from "react-icons/bi";
-
 import './Chat-Style.css'
-
-let roomsMockData = [
-    {
-        "RoomId": "1",
-    },
-    {
-        "RoomId": "2",
-    },
-    {
-        "RoomId": "3",
-    },
-    {
-        "RoomId": "4",
-    },
-    {
-        "RoomId": "5",
-    },
-    {
-        "RoomId": "6",
-    },
-    {
-        "RoomId": "7",
-    },
-    {
-        "RoomId": "8",
-    },
-]
-
-
-let messagesMockData = [
-    {
-        "id": "1",
-        "content": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione maxime tenetur ullam quis error impedit exercitationem dicta suscipit, voluptatibus dolore!",
-        "imSender": true
-    },
-    {
-        "id": "2",
-        "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias vitae veniam deleniti repellendus ab iusto neque nobis aliquid quasi unde repellat accusantium ducimus, iure modi ea, placeat quas similique eligendi sequi facere? Odio sint earum assumenda. Modi tempora qui totam asperiores eius autem, aperiam id minus ducimus facilis accusantium quaerat!",
-        "imSender": false
-    },
-    {
-        "id": "3",
-        "content": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus, error!",
-        "imSender": false
-    },
-    {
-        "id": "4",
-        "content": "Lorem ipsum dolor sit amet.",
-        "imSender": true
-    },
-    {
-        "id": "5",
-        "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio est aut culpa inventore cum animi cupiditate officia unde eveniet sed?",
-        "imSender": true
-    },
-    {
-        "id": "6",
-        "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio est aut culpa inventore cum animi cupiditate officia unde eveniet sed?",
-        "imSender": true
-    },
-    {
-        "id": "7",
-        "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio est aut culpa inventore cum animi cupiditate officia unde eveniet sed?",
-        "imSender": false
-    }
-
-]
-
+import roomsMockData from "../../utils/roomsMockData.json"
+import messagesMockData from "../../utils/messagesMockData.json"
 
 const Chat = () => {
     const [currentRoom, setCurrentRoom] = useState("");
