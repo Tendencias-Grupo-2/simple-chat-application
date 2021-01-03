@@ -4,8 +4,8 @@ import Room from '../Room/Room';
 import Message from '../Message/Message';
 import { BiMailSend, BiExit } from "react-icons/bi";
 import './Chat-Style.css'
-import roomsMockData from "../../utils/roomsMockData.json"
-import messagesMockData from "../../utils/messagesMockData.json"
+import roomsMockData from "../../samples/roomsMockData.json"
+import messagesMockData from "../../samples/messagesMockData.json"
 
 const Chat = () => {
     const [currentRoom, setCurrentRoom] = useState("");
