@@ -32,19 +32,21 @@ let roomsMockData = [
 
 
 const Chat = () => {
-    const [isRoomSelected, setIsRoomSelected] = useState(false);
+    const [currentRoom, setCurrentRoom] = useState("");
 
     return (
         <div className='chat'>
             <div className='chat__header'>
                 <span className='chat__headertext'>Contact Name</span>
+                <span onClick={() => setCurrentRoom("")}>Exit Room</span>
             </div>
             <div className='chat__body'>
-                {isRoomSelected ? (
+                {currentRoom === "" ? (
                     <div className='chat__left'>
                         <span></span>
                     </div>
-                ) : (
+                ) :
+                    (
                         <div className='chat__left'>
                             <span className='chat__left--title'>Select a room from the list to start chatting.</span>
                             <span className='chat__left--subtitle'>Simple Chat Application</span>
@@ -53,9 +55,13 @@ const Chat = () => {
                 <div className='chat__right'>
                     <CreateRoom />
                     {roomsMockData.map((room) => (
-                        <Room roomId={room.RoomId} onClick={() => {
-                            setIsRoomSelected(!isRoomSelected)
-                        }}></Room>
+                        <Room
+                            isRoomSelected={room.RoomId === currentRoom}
+                            roomId={room.RoomId}
+                            onClick={() => {
+                                setCurrentRoom(room.RoomId)
+                            }}>
+                        </Room>
                     ))}
                 </div>
             </div >
