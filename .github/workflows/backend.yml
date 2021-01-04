@@ -52,6 +52,11 @@ jobs:
       - name: Running coverage
         working-directory: simple-chat-back
         run: npm run coverage
+
+      - name: Code duplication
+        working-directory: simple-chat-back
+        run: npm run inspect
+        
       # - name: Running prod build
         # working-directory: simple-chat-back
         # run: npm run build:prod
