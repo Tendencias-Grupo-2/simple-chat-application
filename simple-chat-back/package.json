@@ -9,7 +9,7 @@
         "audit": "audit-ci --high",
         "test": "jest",
         "coverage": "npm test -- --coverage --watchAll=false",
-        "inspect": "jsinspect -t 20 ./src || true"
+        "inspect": "jsinspect -t 20 ./src"
     },
     "dependencies": {
         "audit-ci": "^3.1.1",
