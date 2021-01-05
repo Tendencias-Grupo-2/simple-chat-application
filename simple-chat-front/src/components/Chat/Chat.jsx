@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import CreateRoom from '../Room/CreateRoom';
 import Room from '../Room/Room';
 import Message from '../Message/Message';
@@ -6,15 +6,17 @@ import { BiMailSend, BiExit } from "react-icons/bi";
 import './Chat-Style.css'
 import roomsMockData from "../../samples/roomsMockData.json"
 import messagesMockData from "../../samples/messagesMockData.json"
+import userNameContext from "../../utils/userNameContext";
 
 const Chat = () => {
     const [currentRoom, setCurrentRoom] = useState("");
+    const {contextName} = useContext(userNameContext);
 
     return (
         <div className='chat'>
             <div className='chat__header'>
                 {currentRoom !== "" ? (
-                    <span className='chat__headertext'>Contact Name</span>
+                    <span className='chat__headertext'>Contact Name {contextName}</span>
                 ) : null}
                 {currentRoom !== "" ? (
                     <span className='chat__headertext chat__headertext--exit' onClick={() => setCurrentRoom("")}><BiExit />Exit Room</span>
