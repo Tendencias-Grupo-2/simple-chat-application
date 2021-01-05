@@ -26,7 +26,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/",
     "audit": "audit-ci --high",
-    "inspect": "jsinspect -t 20 ./src || true"
+    "inspect": "jsinspect -t 20 ./src"
   },
   "eslintConfig": {
     "extends": [
