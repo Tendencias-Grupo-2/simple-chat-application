@@ -7,8 +7,8 @@
         "lint": "eslint --ext .js .",
         "dev": "nodemon ./src/index.js",
         "audit": "audit-ci --high",
-        "test": "jest --runInBand --testTimeout=7000",
-        "coverage": "npm test -- --coverage --watchAll=false",
+        "test": "NODE_ENV=development jest --runInBand --testTimeout=7000",
+        "coverage": "NODE_ENV=development npm test -- --coverage --watchAll=false",
         "inspect": "jsinspect -t 20 ./src"
     },
     "jest": {
