@@ -1,5 +1,8 @@
 import { createContext } from "react";
 
-const userNameContext = createContext(null);
+const initialState = {
+    contextName: '',
+    setContextName: (contextName) => { }
+}
 
-export default userNameContext;
+export const userNameContext = createContext(initialState);

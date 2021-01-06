@@ -57,6 +57,7 @@
     height: 55px;
     border: none;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .userinput__btn--join{

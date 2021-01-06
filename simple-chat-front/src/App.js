@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import Chat from "./components/Chat/Chat";
 import UserNameInput from "./components/UserNameInput/UserNameInput";
-import userNameContext from "./utils/userNameContext";
+import {userNameContext} from "./utils/userNameContext";
 
 function App() {
   const [contextName, setContextName] = useState('')
