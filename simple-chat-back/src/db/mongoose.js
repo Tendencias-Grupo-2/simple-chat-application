@@ -1,14 +1,19 @@
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+const mongoose = require('mongoose')
+const dotenv = require('dotenv')
 
-dotenv.config();
+dotenv.config()
 
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING,{
+let connectionString;
+if (process.env.NODE_ENV  === 'development') {
+  connectionString = process.env.MONGODB_CONNECTION_STRING_TEST; 
+} 
+else {
+  connectionString = process.env.MONGODB_CONNECTION_STRING; 
+}
+
+mongoose.connect(connectionString,{
     useNewUrlParser:true,
     useCreateIndex:true,
     useFindAndModify: false,
     useUnifiedTopology: true
-})
-mongoose.connection.on('connected', ()=>{
-    console.log('Connected')
 })

@@ -6,7 +6,7 @@ name: Main CI - Backend
 on:
   push:
     paths:
-    - 'simple-chat-back/**'
+      - "simple-chat-back/**"
     branches:
       - "*"
 
@@ -47,16 +47,19 @@ jobs:
 
       - name: Running test
         working-directory: simple-chat-back
-        run: npm test
+        run: npm run test
+        env:
+          MONGODB_CONNECTION_STRING_TEST: ${{secrets.MONGODB_CONNECTION_STRING_TEST}}
 
       - name: Running coverage
         working-directory: simple-chat-back
         run: npm run coverage
+        env:
+          MONGODB_CONNECTION_STRING_TEST: ${{secrets.MONGODB_CONNECTION_STRING_TEST}}
 
       - name: Code duplication
         working-directory: simple-chat-back
         run: npm run inspect
-        
       # - name: Running prod build
-        # working-directory: simple-chat-back
-        # run: npm run build:prod
+      # working-directory: simple-chat-back
+      # run: npm run build:prod

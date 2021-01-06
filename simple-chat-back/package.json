@@ -3,13 +3,16 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "node app.js",
+        "start": "node ./src/index.js",
         "lint": "eslint --ext .js .",
-        "dev": "nodemon app.js",
+        "dev": "nodemon ./src/index.js",
         "audit": "audit-ci --high",
-        "test": "jest",
-        "coverage": "npm test -- --coverage --watchAll=false",
+        "test": "NODE_ENV=development jest --runInBand --testTimeout=7000",
+        "coverage": "NODE_ENV=development npm test -- --coverage --watchAll=false",
         "inspect": "jsinspect -t 20 ./src"
+    },
+    "jest": {
+        "testEnvironment": "node"
     },
     "dependencies": {
         "audit-ci": "^3.1.1",
@@ -18,7 +21,8 @@
         "express": "^4.16.4",
         "jsinspect": "^0.12.7",
         "mongoose": "^5.11.8",
-        "morgan": "^1.9.1"
+        "morgan": "^1.9.1",
+        "supertest": "^6.0.1"
     },
     "devDependencies": {
         "eslint": "^7.16.0",

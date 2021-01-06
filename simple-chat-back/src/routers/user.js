@@ -1,6 +1,6 @@
-const express = require('express');
-const router = new express.Router();
-const User = require("../models/userModel");
+const express = require('express')
+const router = new express.Router()
+const User = require("../models/userModel")
 
 router.get("/users", async (req, res) =>{
     const _id = req.body._id
@@ -16,7 +16,6 @@ router.get("/users", async (req, res) =>{
        }
   })
   router.post('/users', async (req, res) => {
-    console.log(req.body)
     const user = new User(req.body)
     try{
         await user.save()
