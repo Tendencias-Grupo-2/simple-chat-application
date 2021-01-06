@@ -1,7 +1,7 @@
 const request = require('supertest')
 const app = require('../src/app')
 const User = require('../src/models/userModel')
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const {userOneId, userOne, setupDatabase} = require("./fixtures/db")
 
