@@ -4,7 +4,7 @@ describe('Chat compontent testing suite', function () {
         cy.get('.chat__right > :nth-child(4)').click();
     })
     it('It types on the message bar `This is a test message`', function () {
-        cy.get('.chat__barinput').type('This is a test message'); 
+        cy.get('.chat__barinput').type('This is a test message');
     })
     it('It exits the chat room', function () {
         cy.get('.chat__headertext--exit').click();
