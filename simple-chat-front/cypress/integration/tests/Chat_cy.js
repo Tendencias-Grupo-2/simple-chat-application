@@ -1,6 +1,8 @@
+const stagingHost = 'http://localhost:3000/chat';
+
 describe('Chat compontent testing suite', function () {
     it('It opens the chat room #3', function () {
-        cy.visit('http://localhost:3000/chat');
+        cy.visit(stagingHost);
         cy.get('.chat__right > :nth-child(4)').click();
     })
     it('It types on the message bar `This is a test message`', function () {
