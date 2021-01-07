@@ -1,8 +1,8 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import UserNameInput from './UserNameInput';
+
 configure({ adapter: new Adapter() });
 
 describe("UserNameInput Testing Suite", () => {
@@ -12,9 +12,8 @@ describe("UserNameInput Testing Suite", () => {
         wrapper = shallow(<UserNameInput />);
     })
 
-    it('renders without crashing', () => {
-        const div = document.createElement('div');
-        render(<UserNameInput />, div);
+    it('renders without crashing`', () => {
+        expect(wrapper.contains(<UserNameInput />)).toBe(false)
     });
 
     it('renders the title `Give us your username!`', () => {
@@ -22,8 +21,7 @@ describe("UserNameInput Testing Suite", () => {
     });
 
     it('renders the user name capture input without crashing', () => {
-        const input = document.createElement('input');
-        render(<UserNameInput />, input);
+        expect(wrapper.find('.userinput__forminput').text()).toBe("");
     });
 
     it('renders a button with the text of `Join`', () => {

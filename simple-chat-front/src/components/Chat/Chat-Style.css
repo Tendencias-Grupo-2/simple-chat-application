@@ -11,6 +11,7 @@
     justify-content: space-between;
     height: 9%;
     width: 100%;
+    min-width: 736px;
     background-color: #F3F3F3;
     border-radius: 20px 20px 0px 0px;
 }
@@ -47,11 +48,13 @@
 .chat__left{
     background-color: #fff;
     width: 75%;
+    min-width: 500px;
     height: 100%;
     display: flex;
     flex-flow: column;
     justify-content: center;
     border-radius: 0px 0px 0px 20px;
+    white-space:normal
 }
 
 .chat__left--inner{
@@ -69,6 +72,7 @@
 .chat__right{
     background-color: #F3F3F3;
     width: 25%;
+    min-width: 200px;
     height: 100%;
     border-radius: 0px 0px 20px 0px;
     padding: 0px 18px;
@@ -76,7 +80,7 @@
 }
 
 .chat__left--title{
-    font-size: 86px;
+    font-size: 4.5vw;
     font-weight: 800;
     color: #EB5600;
     text-align: left;
@@ -84,7 +88,7 @@
 }
 
 .chat__left--subtitle{
-    font-size: 58px;
+    font-size: 3vw;
     font-weight: 800;
     color: #1A9988;
     text-align: left;
@@ -96,7 +100,6 @@
     display: flex;
     width: 100%;
     margin: 15px 0px;
-
 }
 
 .chat__barform{
@@ -128,11 +131,11 @@
 
 @media only screen and (max-width: 1400px) {
     .chat__left--title{
-        font-size: 56px;
+        font-size: auto;
     }
 
     .chat__left--subtitle{
-        font-size: 32px;
+        font-size: auto;
     }
 
     .chat__left{

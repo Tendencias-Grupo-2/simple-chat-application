@@ -18,7 +18,6 @@
     background-color: #1A9988;
     color: white;
     padding: 15px;
-
   }
   
   .message--me{
@@ -26,5 +25,12 @@
     text-align: right;
     background-color: #EB5600;
     margin-right: 70px;
+    
+}
+
+.message__time{
+  margin-top: 10px;
+  font-size: 10px;
+  align-self: flex-end;
 
 }
