@@ -54,6 +54,7 @@
     flex-flow: column;
     justify-content: center;
     border-radius: 0px 0px 0px 20px;
+    white-space:normal
 }
 
 .chat__left--inner{
@@ -79,7 +80,7 @@
 }
 
 .chat__left--title{
-    font-size: 86px;
+    font-size: 4.5vw;
     font-weight: 800;
     color: #EB5600;
     text-align: left;
@@ -87,7 +88,7 @@
 }
 
 .chat__left--subtitle{
-    font-size: 58px;
+    font-size: 4vw;
     font-weight: 800;
     color: #1A9988;
     text-align: left;

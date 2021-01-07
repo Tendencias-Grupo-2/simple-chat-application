@@ -7,12 +7,10 @@ const UserNameInput = () => {
     const [userJoined, setUserJoined] = useState(false);
     const [userName, setUserName] = useState('');
     const { setContextName } = useContext(userNameContext);
-    // let history = useHistory();
 
     const joinAction = () => {
         setUserJoined(true)
         setContextName(userName)
-        // history.push("/chat")
     }
 
     const clearAction = () => {

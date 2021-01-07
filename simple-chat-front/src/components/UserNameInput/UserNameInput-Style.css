@@ -10,7 +10,7 @@
     justify-content: space-around;
     background-color: white;
     width: 25%;
-    height: 25%;
+    height: auto;
     padding: 25px;
     border-radius: 20px; 
 }
@@ -19,6 +19,7 @@
     color: #272126;
     font-size: 22px;
     font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .userinput__form{
@@ -58,6 +59,7 @@
     border: none;
     cursor: pointer;
     text-decoration: none;
+    margin: 10px 0px;
 }
 
 .userinput__btn--join{
