@@ -9,6 +9,7 @@
     "audit": "0.0.6",
     "audit-ci": "^3.1.1",
     "axios": "^0.21.1",
+    "cypress": "^6.2.1",
     "enzyme": "^3.11.0",
     "jsinspect": "^0.12.7",
     "react": "^17.0.1",
@@ -26,7 +27,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/",
     "audit": "audit-ci --high",
-    "inspect": "jsinspect -t 20 ./src"
+    "inspect": "jsinspect -t 20 ./src",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -59,6 +61,7 @@
     ]
   },
   "devDependencies": {
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1"
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
+    "eslint-plugin-cypress": "^2.11.2"
   }
 }

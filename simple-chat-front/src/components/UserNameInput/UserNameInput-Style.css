@@ -46,6 +46,9 @@
 }
 
 .userinput__btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 10px;
     font-size: 22px;
     font-weight: 700;
@@ -54,6 +57,7 @@
     height: 55px;
     border: none;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .userinput__btn--join{
