@@ -6,13 +6,13 @@ const addUser = ({id, username, room}) => {
 
     if(!username || !room){
         return{
-            error: 'Username and room are required!'
+            error: 'username and room are required'
         }
     }
     const existingUser = users.find((user)=>user.room === room && user.username === username)
     if(existingUser){
         return {
-            error: "Username is alredy in use in this sesion."
+            error: "username is alredy in use in this sesion"
         }
     }
     const user = {id, username, room}
