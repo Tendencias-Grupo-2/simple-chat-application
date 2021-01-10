@@ -10,6 +10,13 @@ const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 
+const updateRoomData = (user) =>{
+    io.to(user.room).emit('roomData', {
+        room: user.room,
+        users: getUserInRoom(user.room)
+    })
+}
+
 const port = process.env.PORT || 3000
 const publicDirectoryPath = path.join(__dirname, '../public')
 
@@ -26,10 +33,7 @@ io.on('connection', (socket) =>{
         socket.join(user.room)
         socket.emit('message', generateMessage('ChatApp', `Welcome ${user.username}`))
         socket.broadcast.to(user.room).emit('message', generateMessage("ChatApp",`${user.username} has joined!`))
-        io.to(user.room).emit('roomData', {
-            room: user.room,
-            users: getUserInRoom(user.room)
-        })
+        updateRoomData(user)
         callback()
     })
 
@@ -41,10 +45,7 @@ io.on('connection', (socket) =>{
         const user = removeUser(socket.id)
         if(user){
             io.to(user.room).emit('message', generateMessage('ChatApp',`${user.username} has left!`))
-            io.to(user.room).emit('roomData', {
-                room: user.room,
-                users: getUserInRoom(user.room)
-            })
+           updateRoomData(user)
         }
     })
 })
