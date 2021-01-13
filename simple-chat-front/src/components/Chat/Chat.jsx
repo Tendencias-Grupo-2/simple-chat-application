@@ -1,7 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
 import io from "socket.io-client";
-// import socketIOClient from "socket.io-client";
-
 import { useForm } from "react-hook-form";
 import CreateRoom from '../Room/CreateRoom';
 import Room from '../Room/Room';
@@ -9,10 +7,7 @@ import Message from '../Message/Message';
 import { BiMailSend, BiExit } from "react-icons/bi";
 import './Chat-Style.css'
 import roomsMockData from "../../samples/roomsMockData.json"
-import messagesMockData from "../../samples/messagesMockData.json"
 import { userNameContext } from "../../utils/userNameContext";
-import queryString from 'query-string';
-
 
 const HOST = process.env.REACT_APP_STAGING_HOST;
 const socket = io(HOST);
@@ -24,7 +19,7 @@ const Chat = ({ location }) => {
     const [messages, setMessages] = useState([])
     const [flag, setFlag] = useState(0)
     const { contextName } = useContext(userNameContext);
-    const { handleSubmit, reset } = useForm({});
+    const { handleSubmit } = useForm({});
 
     const sendMessage = () => {
         if (message) {
@@ -32,12 +27,19 @@ const Chat = ({ location }) => {
         }
     }
 
+    const exitRoom = () => {
+        setCurrentRoom("")
+        // socket.emit('disconnect', message, () => setMessage(''));
+    }
+
+
+
     useEffect(() => {
         socket.emit('join', { username: contextName, room: currentRoom }, (error) => {
-            if (error) {
-                alert(error)
-                setFlag(1);
-            }
+            // if (error) {
+            //     alert(error)
+            //     setFlag(1);
+            // }
         })
 
     }, [currentRoom, contextName]);
@@ -45,14 +47,13 @@ const Chat = ({ location }) => {
     useEffect(() => {
         socket.on('message', message => {
             console.log(message)
-            setMessages(messages => [...messages, message.text]);
+            setMessages((messages) => [...messages, message]);
         });
 
         socket.on("roomData", ({ users }) => {
             setUsers(users);
-            console.log(users)
         });
-    }, []);
+    }, [contextName]);
 
 
     return (
@@ -62,7 +63,7 @@ const Chat = ({ location }) => {
                     <span className='chat__headertext'>Contact Name {contextName}</span>
                 ) : null}
                 {currentRoom !== "" ? (
-                    <span className='chat__headertext chat__headertext--exit' onClick={() => setCurrentRoom("")}><BiExit />Exit Room</span>
+                    <span className='chat__headertext chat__headertext--exit' onClick={exitRoom}><BiExit />Exit Room</span>
                 ) : null}
             </div>
             <div className='chat__body'>
@@ -71,12 +72,13 @@ const Chat = ({ location }) => {
                         <div className='chat__left--inner'>
                             {messages.map((message) => (
                                 <Message
-                                    message={message}
-
-
+                                    message={message.text}
                                     // key={message.id}
-                                    // content={message.content}
-                                    imSender={contextName === users[1]?.username ? true : false}
+                                    createdAt={message.createdAt}
+                                    userName={message.username}
+                                    imSender={
+                                        contextName.toLowerCase() === message.username ? true : false
+                                    }
                                 >
                                 </Message>
                             ))}
@@ -107,9 +109,6 @@ const Chat = ({ location }) => {
                             roomId={room.RoomId}
                             onClick={() => {
                                 setCurrentRoom(room.RoomId)
-                                console.log(currentRoom)
-                                console.log(contextName)
-
                             }}>
                         </Room>
                     ))}
