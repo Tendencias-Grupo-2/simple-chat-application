@@ -19,7 +19,6 @@ const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 
-app.use(cors)
 
 const updateRoomData = (user) => {
   io.to(user.room).emit(emitRoomData, {
@@ -63,6 +62,8 @@ io.on(emitConnection, (socket) => {
     }
   })
 })
+
+app.use(cors)
 
 server.listen(port, () => {
   console.log(`Listening to requests on http://localhost:${port}`)

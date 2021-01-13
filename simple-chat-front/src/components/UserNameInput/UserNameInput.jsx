@@ -6,11 +6,13 @@ import { Link } from "react-router-dom";
 const UserNameInput = () => {
     const [userJoined, setUserJoined] = useState(false);
     const [userName, setUserName] = useState('');
+    const [room, setRoom] = useState('')
     const { setContextName } = useContext(userNameContext);
 
     const joinAction = () => {
         setUserJoined(true)
         setContextName(userName)
+        setRoom("1");
     }
 
     const clearAction = () => {
@@ -35,7 +37,14 @@ const UserNameInput = () => {
                 }} />
             </form>
             <div className="userinput__action">
-                <Link to="/chat" className="userinput__btn userinput__btn--join" onClick={() => { joinAction() }}>Join</Link>
+                {/* <Link to="/chat" className="userinput__btn userinput__btn--join" onClick={() => { joinAction() }}>Join</Link> */}
+                <Link
+                    className="userinput__btn userinput__btn--join"
+                    onClick={
+                        event => (!userName) ? event.preventDefault() : joinAction()
+                    } to={`/chat`}>
+                    Join
+                </Link>
                 <button className="userinput__btn userinput__btn--clear" onClick={() => { clearAction() }}>Clear</button>
             </div>
         </div>

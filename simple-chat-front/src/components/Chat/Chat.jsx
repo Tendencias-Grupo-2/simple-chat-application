@@ -1,4 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import io from "socket.io-client";
+// import socketIOClient from "socket.io-client";
+
+import { useForm } from "react-hook-form";
 import CreateRoom from '../Room/CreateRoom';
 import Room from '../Room/Room';
 import Message from '../Message/Message';
@@ -6,11 +10,50 @@ import { BiMailSend, BiExit } from "react-icons/bi";
 import './Chat-Style.css'
 import roomsMockData from "../../samples/roomsMockData.json"
 import messagesMockData from "../../samples/messagesMockData.json"
-import {userNameContext} from "../../utils/userNameContext";
+import { userNameContext } from "../../utils/userNameContext";
+import queryString from 'query-string';
 
-const Chat = () => {
+
+const HOST = process.env.REACT_APP_STAGING_HOST;
+const socket = io(HOST);
+
+const Chat = ({ location }) => {
     const [currentRoom, setCurrentRoom] = useState("");
-    const {contextName} = useContext(userNameContext);
+    const [users, setUsers] = useState('')
+    const [message, setMessage] = useState('')
+    const [messages, setMessages] = useState([])
+    const [flag, setFlag] = useState(0)
+    const { contextName } = useContext(userNameContext);
+    const { handleSubmit, reset } = useForm({});
+
+    const sendMessage = () => {
+        if (message) {
+            socket.emit('sendMessage', message, () => setMessage(''));
+        }
+    }
+
+    useEffect(() => {
+        socket.emit('join', { username: contextName, room: currentRoom }, (error) => {
+            if (error) {
+                alert(error)
+                setFlag(1);
+            }
+        })
+
+    }, [currentRoom, contextName]);
+
+    useEffect(() => {
+        socket.on('message', message => {
+            console.log(message)
+            setMessages(messages => [...messages, message.text]);
+        });
+
+        socket.on("roomData", ({ users }) => {
+            setUsers(users);
+            console.log(users)
+        });
+    }, []);
+
 
     return (
         <div className='chat'>
@@ -26,18 +69,23 @@ const Chat = () => {
                 {currentRoom !== "" ? (
                     <div className='chat__left'>
                         <div className='chat__left--inner'>
-                            {messagesMockData.map((message) => (
+                            {messages.map((message) => (
                                 <Message
-                                    key={message.id}
-                                    content={message.content}
-                                    imSender={message.imSender}
+                                    message={message}
+
+
+                                    // key={message.id}
+                                    // content={message.content}
+                                    imSender={contextName === users[1]?.username ? true : false}
                                 >
                                 </Message>
                             ))}
                         </div>
                         <div className='chat__bar'>
-                            <form action="" className='chat__barform'>
-                                <input className='chat__barinput' type="text" />
+                            <form action="" className='chat__barform' onSubmit={handleSubmit(sendMessage)}>
+                                <input className='chat__barinput' name="message" type="text" onChange={(e) => {
+                                    setMessage(e.target.value)
+                                }} />
                                 <button className="chat__barbtn"><BiMailSend size="25" color="#FFF" /></button>
                             </form>
                         </div>
@@ -59,6 +107,9 @@ const Chat = () => {
                             roomId={room.RoomId}
                             onClick={() => {
                                 setCurrentRoom(room.RoomId)
+                                console.log(currentRoom)
+                                console.log(contextName)
+
                             }}>
                         </Room>
                     ))}
