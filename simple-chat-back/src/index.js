@@ -19,6 +19,8 @@ const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 
+app.use(cors)
+
 const updateRoomData = (user) => {
   io.to(user.room).emit(emitRoomData, {
     room: user.room,
@@ -29,7 +31,6 @@ const updateRoomData = (user) => {
 const port = process.env.PORT || 3000
 const publicDirectoryPath = path.join(__dirname, '../public')
 
-app.use(cors())
 app.use(express.static(publicDirectoryPath))
 
 io.on(emitConnection, (socket) => {
