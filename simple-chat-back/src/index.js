@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const http = require('http')
+const cors = require('cors')
 const socketio = require('socket.io')
 const { generateMessage } = require('./utils/messages')
 const { getUser, getUserInRoom, removeUser, addUser } = require('./utils/users')
@@ -28,6 +29,7 @@ const updateRoomData = (user) => {
 const port = process.env.PORT || 3000
 const publicDirectoryPath = path.join(__dirname, '../public')
 
+app.use(cors())
 app.use(express.static(publicDirectoryPath))
 
 io.on(emitConnection, (socket) => {
