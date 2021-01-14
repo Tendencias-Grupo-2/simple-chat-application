@@ -51,6 +51,7 @@ io.on(emitConnection, (socket) => {
     const user = getUser(socket.id)
     io.to(user.room).emit(emitMessage, generateMessage(user.username, message))
   })
+
   socket.on(emitDisconnect, () => {
     const user = removeUser(socket.id)
     if (user) {
@@ -61,6 +62,13 @@ io.on(emitConnection, (socket) => {
       updateRoomData(user)
     }
   })
+
+  socket.on('exitRoom', (currentRoom) => {
+    // leave the current room (stored in session)
+    removeUser(socket.id)
+    socket.leave(currentRoom);
+
+  });
 })
 
 app.use(cors)
