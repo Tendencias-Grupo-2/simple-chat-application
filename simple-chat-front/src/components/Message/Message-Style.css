@@ -32,5 +32,10 @@
   margin-top: 10px;
   font-size: 10px;
   align-self: flex-end;
+}
 
+.message__sender{
+  color: #646464;
+  margin-top: 10px;
+  font-size: 10px;
 }

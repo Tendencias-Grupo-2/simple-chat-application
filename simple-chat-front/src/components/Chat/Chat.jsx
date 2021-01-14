@@ -8,16 +8,17 @@ import { BiMailSend, BiExit } from "react-icons/bi";
 import './Chat-Style.css'
 import roomsMockData from "../../samples/roomsMockData.json"
 import { userNameContext } from "../../utils/userNameContext";
+import { Redirect } from "react-router-dom"
 
 const HOST = process.env.REACT_APP_STAGING_HOST;
 const socket = io(HOST);
 
-const Chat = ({ location }) => {
+const Chat = () => {
     const [currentRoom, setCurrentRoom] = useState("");
     const [users, setUsers] = useState('')
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
-    const [flag, setFlag] = useState(0)
+    const [errorFlag, setErrorFlag] = useState(0)
     const { contextName } = useContext(userNameContext);
     const { handleSubmit } = useForm({});
 
@@ -27,40 +28,42 @@ const Chat = ({ location }) => {
         }
     }
 
-    const exitRoom = () => {
-        setCurrentRoom("")
-        // socket.emit('disconnect', message, () => setMessage(''));
+    const joinRoom = (roomId) => {
+        socket.emit('join', { username: contextName, room: roomId }, (error) => {
+            if (error) {
+                alert(error)
+                setErrorFlag(1);
+            }
+        })
     }
 
-
-
-    useEffect(() => {
-        socket.emit('join', { username: contextName, room: currentRoom }, (error) => {
-            // if (error) {
-            //     alert(error)
-            //     setFlag(1);
-            // }
-        })
-
-    }, [currentRoom, contextName]);
+    const exitRoom = () => {
+        setCurrentRoom("")
+        socket.emit('disconnect');
+    }
 
     useEffect(() => {
         socket.on('message', message => {
-            console.log(message)
             setMessages((messages) => [...messages, message]);
         });
 
         socket.on("roomData", ({ users }) => {
+            console.log(users)
             setUsers(users);
         });
-    }, [contextName]);
+    }, [contextName, setUsers]);
 
+    if (errorFlag) {
+        return (
+            <Redirect to="/" />
+        )
+    }
 
     return (
         <div className='chat'>
             <div className='chat__header'>
                 {currentRoom !== "" ? (
-                    <span className='chat__headertext'>Contact Name {contextName}</span>
+                    <span className='chat__headertext'>Contact Name</span>
                 ) : null}
                 {currentRoom !== "" ? (
                     <span className='chat__headertext chat__headertext--exit' onClick={exitRoom}><BiExit />Exit Room</span>
@@ -109,6 +112,7 @@ const Chat = ({ location }) => {
                             roomId={room.RoomId}
                             onClick={() => {
                                 setCurrentRoom(room.RoomId)
+                                joinRoom(room.RoomId)
                             }}>
                         </Room>
                     ))}
