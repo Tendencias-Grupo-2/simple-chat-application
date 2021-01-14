@@ -15,20 +15,23 @@ const socket = io(HOST);
 
 const Chat = () => {
     const [currentRoom, setCurrentRoom] = useState("");
-    const [users, setUsers] = useState('')
+    //TODO: Implement room active users list
+    // const [users, setUsers] = useState('')
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
     const [errorFlag, setErrorFlag] = useState(0)
     const { contextName } = useContext(userNameContext);
-    const { handleSubmit } = useForm({});
+    const { register, handleSubmit, reset } = useForm({});
 
-    const sendMessage = () => {
+    const sendMessage = (data) => {
         if (message) {
             socket.emit('sendMessage', message, () => setMessage(''));
+            data.message = reset();
         }
     }
 
     const joinRoom = (roomId) => {
+        setMessages([])
         socket.emit('join', { username: contextName, room: roomId }, (error) => {
             if (error) {
                 alert(error)
@@ -38,6 +41,7 @@ const Chat = () => {
     }
 
     const exitRoom = () => {
+        setMessages([])
         setCurrentRoom("")
         socket.emit('disconnect');
     }
@@ -47,11 +51,13 @@ const Chat = () => {
             setMessages((messages) => [...messages, message]);
         });
 
-        socket.on("roomData", ({ users }) => {
-            console.log(users)
-            setUsers(users);
-        });
-    }, [contextName, setUsers]);
+        //TODO: Implement room active users list
+        // socket.on("roomData", ({ users }) => {
+        //     console.log(users)
+        //     setUsers(users);
+        // });
+
+    }, [contextName]);
 
     if (errorFlag) {
         return (
@@ -76,7 +82,6 @@ const Chat = () => {
                             {messages.map((message) => (
                                 <Message
                                     message={message.text}
-                                    // key={message.id}
                                     createdAt={message.createdAt}
                                     userName={message.username}
                                     imSender={
@@ -88,7 +93,7 @@ const Chat = () => {
                         </div>
                         <div className='chat__bar'>
                             <form action="" className='chat__barform' onSubmit={handleSubmit(sendMessage)}>
-                                <input className='chat__barinput' name="message" type="text" onChange={(e) => {
+                                <input className='chat__barinput' ref={register} name="message" type="text" onChange={(e) => {
                                     setMessage(e.target.value)
                                 }} />
                                 <button className="chat__barbtn"><BiMailSend size="25" color="#FFF" /></button>
