@@ -8,7 +8,7 @@ const messageSchema = new mongoose.Schema(
       required: true,
       trim: true
     },
-    text: {
+    message: {
       type: String,
       required: true,
       trim: true
