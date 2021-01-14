@@ -43,7 +43,7 @@ const Chat = () => {
     const exitRoom = () => {
         setMessages([])
         setCurrentRoom("")
-        socket.emit('disconnect');
+        socket.emit('exitRoom', currentRoom);
     }
 
     useEffect(() => {
