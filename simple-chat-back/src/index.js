@@ -11,7 +11,8 @@ const {
   emitJoin,
   emitMessage,
   emitSendMessage,
-  emitDisconnect
+  emitDisconnect,
+  emitExitRoom
 } = require('./utils/constants')
 require('./db/mongoose')
 
@@ -63,8 +64,7 @@ io.on(emitConnection, (socket) => {
     }
   })
 
-  socket.on('exitRoom', (currentRoom) => {
-    // leave the current room (stored in session)
+  socket.on(emitExitRoom, (currentRoom) => {
     removeUser(socket.id)
     socket.leave(currentRoom);
 

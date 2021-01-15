@@ -4,7 +4,8 @@ const emitNames = {
     emitMessage:'message',
     emitSendMessage: 'sendMessage',
     emitDisconnect: 'disconnect',
-    emitRoomData: 'roomData'
+    emitRoomData: 'roomData',
+    emitExitRoom: 'exitRoom'
 }
 
 module.exports = emitNames
