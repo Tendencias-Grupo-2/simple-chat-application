@@ -25,4 +25,6 @@ describe("Room component Testing Suite", () => {
         expect(wrapper.find('.room__name').text()).toContain("Room #");
     });
 
+
+
 });
