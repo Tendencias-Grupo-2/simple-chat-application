@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import io from "socket.io-client";
 import { useForm } from "react-hook-form";
-import CreateRoom from '../Room/CreateRoom';
 import Room from '../Room/Room';
 import Message from '../Message/Message';
 import { BiMailSend, BiExit } from "react-icons/bi";
@@ -47,9 +46,9 @@ const Chat = () => {
         socket.emit('exitRoom', currentRoom);
     }
 
+    /* istanbul ignore next */
     useEffect(() => {
         socket.on('message', message => {
-            console.log(message)
             if (message.username === "ChatApp") {
                 setInfoMessages((messages) => [...messages, message]);
             } else {
@@ -126,7 +125,6 @@ const Chat = () => {
                         </div>
                     )}
                 <div className='chat__right'>
-                    <CreateRoom />
                     {roomsMockData.map((room) => (
                         <Room
                             key={room.RoomId}

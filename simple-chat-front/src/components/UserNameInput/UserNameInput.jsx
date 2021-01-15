@@ -25,7 +25,7 @@ const UserNameInput = () => {
 
     return (
         <div className="userinput">
-            <div className="userinput__debug">
+            <div className="debug__modifier">
                 <span>User: </span>
                 <span className="userinput__username">{userName}</span>
                 <span>Joined: </span>
