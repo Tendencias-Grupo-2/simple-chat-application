@@ -18,6 +18,7 @@ const Chat = () => {
     //TODO: Implement room active users list
     // const [users, setUsers] = useState('')
     const [message, setMessage] = useState('')
+    const [infoMessages, setInfoMessages] = useState([])
     const [messages, setMessages] = useState([])
     const [errorFlag, setErrorFlag] = useState(0)
     const { contextName } = useContext(userNameContext);
@@ -48,7 +49,12 @@ const Chat = () => {
 
     useEffect(() => {
         socket.on('message', message => {
-            setMessages((messages) => [...messages, message]);
+            console.log(message)
+            if (message.username === "ChatApp") {
+                setInfoMessages((messages) => [...messages, message]);
+            } else {
+                setMessages((messages) => [...messages, message]);
+            }
         });
 
         //TODO: Implement room active users list
@@ -79,6 +85,17 @@ const Chat = () => {
                 {currentRoom !== "" ? (
                     <div className='chat__left'>
                         <div className='chat__left--inner'>
+                            {infoMessages.map((message) => (
+                                <Message
+                                    message={message.text + " has joined the chat"}
+                                    createdAt={message.createdAt}
+                                    userName={message.username}
+                                    imSender={
+                                        contextName.toLowerCase() === message.username ? true : false
+                                    }
+                                >
+                                </Message>
+                            ))}
                             {messages.map((message) => (
                                 <Message
                                     message={message.text}
