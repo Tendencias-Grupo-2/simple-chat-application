@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const http = require('http')
+const cors = require('cors')
 const socketio = require('socket.io')
 const { generateMessage } = require('./utils/messages')
 const { getUser, getUserInRoom, removeUser, addUser } = require('./utils/users')
@@ -17,6 +18,7 @@ require('./db/mongoose')
 const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
+
 
 const updateRoomData = (user) => {
   io.to(user.room).emit(emitRoomData, {
@@ -49,6 +51,7 @@ io.on(emitConnection, (socket) => {
     const user = getUser(socket.id)
     io.to(user.room).emit(emitMessage, generateMessage(user.username, message))
   })
+
   socket.on(emitDisconnect, () => {
     const user = removeUser(socket.id)
     if (user) {
@@ -59,7 +62,16 @@ io.on(emitConnection, (socket) => {
       updateRoomData(user)
     }
   })
+
+  socket.on('exitRoom', (currentRoom) => {
+    // leave the current room (stored in session)
+    removeUser(socket.id)
+    socket.leave(currentRoom);
+
+  });
 })
+
+app.use(cors)
 
 server.listen(port, () => {
   console.log(`Listening to requests on http://localhost:${port}`)

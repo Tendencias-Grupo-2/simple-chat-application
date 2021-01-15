@@ -1,16 +1,20 @@
 import React, { useState, useContext } from 'react';
 import './UserNameInput-Style.css'
 import { userNameContext } from "../../utils/userNameContext";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const UserNameInput = () => {
     const [userJoined, setUserJoined] = useState(false);
     const [userName, setUserName] = useState('');
     const { setContextName } = useContext(userNameContext);
+    let history = useHistory();
 
     const joinAction = () => {
-        setUserJoined(true)
         setContextName(userName)
+        setUserJoined(true)
+        if (userName !== "") {
+            history.push("/chat")
+        }
     }
 
     const clearAction = () => {
@@ -21,7 +25,7 @@ const UserNameInput = () => {
 
     return (
         <div className="userinput">
-            <div className="userinput__debug">
+            <div className="debug__modifier">
                 <span>User: </span>
                 <span className="userinput__username">{userName}</span>
                 <span>Joined: </span>
@@ -35,7 +39,12 @@ const UserNameInput = () => {
                 }} />
             </form>
             <div className="userinput__action">
-                <Link to="/chat" className="userinput__btn userinput__btn--join" onClick={() => { joinAction() }}>Join</Link>
+                <span
+                    className="userinput__btn userinput__btn--join"
+                    onClick={joinAction}
+                >
+                    Join
+                </span>
                 <button className="userinput__btn userinput__btn--clear" onClick={() => { clearAction() }}>Clear</button>
             </div>
         </div>
