@@ -3,12 +3,16 @@ const mongoose = require("mongoose")
 const messageSchema = new mongoose.Schema(
   {
     user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      type: String,
       required: true,
       trim: true
     },
     message: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    room: {
       type: String,
       required: true,
       trim: true
