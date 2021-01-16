@@ -36,8 +36,20 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest"],
+    "env": {
+      "es6": true,
+      "browser": false,
+      "jest": true
+    },
+    "rules": {
+      "no-case-declarations": "error",
+      "no-console": 1,
+      "code": ["warm", 100],
+      "ignoreStrings": "warm",
+      "tabWidth": 5,
+      "indent": ["warm", 2],
+      "camelcase": "error"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -67,4 +79,5 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
     "eslint-plugin-cypress": "^2.11.2"
   }
+}
 }
