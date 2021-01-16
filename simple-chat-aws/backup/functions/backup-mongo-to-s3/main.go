@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	mongo "simple-chat-aws/mongodb"
-	"simple-chat-aws/s3"
+	"simple-chat-aws/shared/s3"
 	"time"
 
 	"simple-chat-aws/shared/apigateway"

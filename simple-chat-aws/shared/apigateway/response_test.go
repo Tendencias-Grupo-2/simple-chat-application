@@ -23,3 +23,13 @@ func TestNewJSONResponse(t *testing.T) {
 	c.Equal("application/json", response.Headers["Content-Type"])
 	c.JSONEq(`{"hello":"world"}`, response.Body)
 }
+
+func TestLogAndReturnError(t *testing.T) {
+	c := require.New(t)
+	sampleError := errors.New("a sample error")
+
+	response := LogAndReturnError(sampleError)
+	c.Equal(500, response.StatusCode)
+	c.Equal("application/json", response.Headers["Content-Type"])
+	c.JSONEq(`{"http_code": 500, "message":"a sample error"}`, response.Body)
+}
