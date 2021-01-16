@@ -99,9 +99,4 @@ describe("Chat Testing Suite", () => {
     sendMessageButton.simulate("click");
     expect(barInput.text()).toBe("");
   });
-
-  it("renders the active users correctly", () => {
-    const users = wrapper.find(".chat__users").map((node) => node.text());
-    expect(users).toEqual([]);
-  });
 });

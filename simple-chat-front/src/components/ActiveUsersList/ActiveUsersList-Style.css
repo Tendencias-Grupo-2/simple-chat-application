@@ -1,0 +1,10 @@
+.chat__users {
+  font-size: 0.85em;
+  font-weight: 400;
+  color: #adadad;
+}
+
+.chat__users--bold {
+  font-weight: 700;
+  color: #1a9988;
+}

@@ -8,6 +8,7 @@ import "./Chat-Style.css";
 import roomsMockData from "../../samples/roomsMockData.json";
 import { userNameContext } from "../../utils/userNameContext";
 import { Redirect } from "react-router-dom";
+import ActiveUsersList from "../ActiveUsersList/ActiveUsersList";
 
 const HOST = process.env.REACT_APP_STAGING_HOST;
 const socket = io(HOST);
@@ -120,21 +121,7 @@ const Chat = () => {
               ))}
             </div>
             <div>
-              {users ? (
-                <div>
-                  <span className="chat__users chat__users--bold">
-                    💬 Currently chatting:{" "}
-                  </span>
-                  {users.map((user) => (
-                    <span className="chat__users" key={user.id}>
-                      {user.username},{" "}
-                    </span>
-                  ))}
-                </div>
-              ) : (
-                <h1>nohay</h1>
-              )}
-
+              {users ? <ActiveUsersList users={users} /> : null}
               <div className="chat__bar">
                 <form
                   action=""
