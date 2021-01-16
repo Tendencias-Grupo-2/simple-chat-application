@@ -51,7 +51,7 @@ io.on(emitConnection, (socket) => {
   socket.on(emitSendMessage, (message) => {
     const user = getUser(socket.id)
     io.to(user.room).emit(emitMessage, generateMessage(user.username, message))
-    const Modelmessage = new Message({user: user.username, message: message, room: user.room })
+    const Modelmessage = new Message({user: user.username, message, room: user.room })
     Modelmessage.save()
   })
 
