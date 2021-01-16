@@ -40,10 +40,10 @@ io.on(emitConnection, (socket) => {
       return callback(error)
     }
     socket.join(user.room)
-    socket.emit(emitMessage, generateMessage('ChatApp', user.username))
+    socket.emit(emitMessage, generateMessage('ChatApp',`${user.username} has joined the room.`))
     socket.broadcast
       .to(user.room)
-      .emit(emitMessage, generateMessage('ChatApp', user.username))
+      .emit(emitMessage, generateMessage('ChatApp',`${user.username} has joined the room.`))
     updateRoomData(user)
     callback()
   })
@@ -65,10 +65,14 @@ io.on(emitConnection, (socket) => {
   })
 
   socket.on(emitExitRoom, (currentRoom) => {
-    removeUser(socket.id)
-    socket.leave(currentRoom);
-
-  });
+    const user = removeUser(socket.id)
+    updateRoomData(user)
+    socket.leave(currentRoom)
+    io.to(user.room).emit(
+      emitMessage,
+      generateMessage('ChatApp', `${user.username} has left the room.`)
+    )
+    });
 })
 
 app.use(cors)
