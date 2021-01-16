@@ -24,4 +24,4 @@ jobs:
             SECRET_KEY
         env:
           HD_MONGODB_CONNECTION_STRING: ${{ secrets.MONGODB_CONNECTION_STRING }}
-          HD_PORT: 3000
+          HD_PORT: 3001
