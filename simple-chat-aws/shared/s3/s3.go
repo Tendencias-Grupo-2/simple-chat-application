@@ -11,12 +11,13 @@ import (
 )
 
 var (
-	s3Client s3iface.S3API
+	// Client is the client for the S3 service
+	Client s3iface.S3API
 )
 
 func init() {
 	sess := session.Must(session.NewSession())
-	s3Client = s3.New(sess)
+	Client = s3.New(sess)
 }
 
 // UploadObject method for upload elements in S3
@@ -27,7 +28,7 @@ func UploadObject(ctx context.Context, bucket, path string, data []byte) error {
 		Key:    aws.String(path),
 	}
 
-	_, err := s3Client.PutObjectWithContext(ctx, input)
+	_, err := Client.PutObjectWithContext(ctx, input)
 	if err != nil {
 		return err
 	}
