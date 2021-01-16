@@ -3,7 +3,7 @@ import "./ActiveUsersList-Style.css";
 
 const ActiveUsersList = ({ users }) => {
   return (
-    <div>
+    <div className="chas__userswrap">
       <span className="chat__users chat__users--bold">
         💬 Currently chatting:{" "}
       </span>
