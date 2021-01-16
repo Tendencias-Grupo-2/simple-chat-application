@@ -3,7 +3,9 @@ import "./Message-Style.css";
 import PseudoDateParser from "@pseudomera/date-parser/dist/dateParser";
 
 const Message = ({ message, imSender, createdAt, userName }) => {
+  /* istanbul ignore next */
   const parsedNumber = PseudoDateParser(createdAt);
+
   return (
     <div className={`message ${imSender === true ? "message--me" : null}`}>
       <span className="message__text">{message}</span>
