@@ -15,6 +15,7 @@ const socket = io(HOST);
 
 const Chat = () => {
   const [currentRoom, setCurrentRoom] = useState("");
+  const [roomName, setRoomName] = useState("");
   const [users, setUsers] = useState("");
   const [message, setMessage] = useState("");
   const [infoMessages, setInfoMessages] = useState([]);
@@ -71,6 +72,10 @@ const Chat = () => {
     });
   }, [contextName]);
 
+  useEffect(() => {
+    console.log(messages);
+  }, [messages]);
+
   if (errorFlag) {
     return <Redirect to="/" />;
   }
@@ -79,7 +84,7 @@ const Chat = () => {
     <div className="chat">
       <div className="chat__header">
         {currentRoom !== "" ? (
-          <span className="chat__headertext">Contact Name</span>
+          <span className="chat__headertext">{roomName} Chatting Room</span>
         ) : null}
         {currentRoom !== "" ? (
           <span
@@ -97,7 +102,7 @@ const Chat = () => {
             <div className="chat__left--inner">
               {infoMessages.map((message) => (
                 <Message
-                  key={message._id}
+                  key={message}
                   message={message.text}
                   createdAt={message.createdAt}
                   userName={message.username}
@@ -166,6 +171,7 @@ const Chat = () => {
               Name={room.Name}
               onClick={() => {
                 setCurrentRoom(room.Id);
+                setRoomName(room.Name);
                 currentRoom === ""
                   ? joinRoom(room.Id)
                   : switchRoom(currentRoom, room.Id);
