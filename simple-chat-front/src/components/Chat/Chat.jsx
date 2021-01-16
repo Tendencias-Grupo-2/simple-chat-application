@@ -18,7 +18,6 @@ const Chat = () => {
   const [roomName, setRoomName] = useState("");
   const [users, setUsers] = useState("");
   const [message, setMessage] = useState("");
-  const [infoMessages, setInfoMessages] = useState([]);
   const [messages, setMessages] = useState([]);
   const [errorFlag, setErrorFlag] = useState(0);
   const { contextName } = useContext(userNameContext);
@@ -35,7 +34,6 @@ const Chat = () => {
   /* istanbul ignore next */
   const joinRoom = (roomId) => {
     setMessages([]);
-    setInfoMessages([]);
     socket.emit("join", { username: contextName, room: roomId }, (error) => {
       if (error) {
         alert(error);
@@ -46,7 +44,6 @@ const Chat = () => {
 
   const exitRoom = () => {
     setMessages([]);
-    setInfoMessages([]);
     setCurrentRoom("");
     socket.emit("exitRoom", currentRoom);
   };
@@ -55,7 +52,6 @@ const Chat = () => {
   const switchRoom = (currentRoom, newRoom) => {
     socket.emit("exitRoom", currentRoom);
     setMessages([]);
-    setInfoMessages([]);
     joinRoom(newRoom);
     setCurrentRoom(newRoom);
   };
@@ -63,11 +59,7 @@ const Chat = () => {
   /* istanbul ignore next */
   useEffect(() => {
     socket.on("message", (message) => {
-      if (message.username === "ChatApp") {
-        setInfoMessages((messages) => [...messages, message]);
-      } else {
-        setMessages((messages) => [...messages, message]);
-      }
+      setMessages((messages) => [...messages, message]);
     });
 
     socket.on("roomData", ({ users }) => {
@@ -99,19 +91,6 @@ const Chat = () => {
         {currentRoom !== "" ? (
           <div className="chat__left">
             <div className="chat__left--inner">
-              {infoMessages.map((message) => (
-                <Message
-                  key={message.createdAt}
-                  message={message.text}
-                  createdAt={message.createdAt}
-                  userName={message.username}
-                  imSender={
-                    contextName.toLowerCase() === message.username
-                      ? true
-                      : false
-                  }
-                ></Message>
-              ))}
               {messages.map((message) => (
                 <Message
                   key={message.createdAt}
