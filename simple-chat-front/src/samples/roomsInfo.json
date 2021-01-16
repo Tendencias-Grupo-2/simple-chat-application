@@ -1,0 +1,52 @@
+[
+  {
+    "Id": "1",
+    "Name": "Barcelona",
+    "Picture": "https://i.imgur.com/0n0B6rU.jpeg"
+  },
+  {
+    "Id": "2",
+    "Name": "Beijing",
+    "Picture": "https://i.imgur.com/pcumcGA.jpeg"
+  },
+  {
+    "Id": "3",
+    "Name": "London",
+    "Picture": "https://i.imgur.com/nCd5rsA.jpeg"
+  },
+  {
+    "Id": "4",
+    "Name": "Moscow",
+    "Picture": "https://i.imgur.com/VjDSklf.jpeg"
+  },
+  {
+    "Id": "5",
+    "Name": "New York",
+    "Picture": "https://i.imgur.com/XpLmcus.jpeg"
+  },
+  {
+    "Id": "6",
+    "Name": "Paris",
+    "Picture": "https://i.imgur.com/QGxIewL.jpeg"
+  },
+  {
+    "Id": "7",
+    "Name": "San Francisco",
+    "Picture": "https://i.imgur.com/dHNiGEM.jpeg"
+  },
+  {
+    "Id": "8",
+    "Name": "Santo Domingo",
+    "Picture": "https://i.imgur.com/uuAXdEG.jpeg"
+  },
+  {
+    "Id": "9",
+    "Name": "Talin",
+    "Picture": "https://i.imgur.com/5DXPVZc.jpeg"
+  },
+  {
+    "Id": "10",
+    "Name": "Tokyo",
+    "Picture": "https://i.imgur.com/HvuZDLb.jpeg"
+  }
+]

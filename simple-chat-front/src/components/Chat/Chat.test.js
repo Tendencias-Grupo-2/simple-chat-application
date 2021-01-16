@@ -46,14 +46,16 @@ describe("Chat Testing Suite", () => {
   it("renders the rooms names correctly", () => {
     const rooms = wrapper.find(".room").map((node) => node.text());
     expect(rooms).toEqual([
-      "Room #1",
-      "Room #2",
-      "Room #3",
-      "Room #4",
-      "Room #5",
-      "Room #6",
-      "Room #7",
-      "Room #8",
+      "Barcelona",
+      "Beijing",
+      "London",
+      "Moscow",
+      "New York",
+      "Paris",
+      "San Francisco",
+      "Santo Domingo",
+      "Talin",
+      "Tokyo",
     ]);
   });
 
