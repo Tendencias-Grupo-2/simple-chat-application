@@ -7,7 +7,7 @@ const Room = ({ Name, Picture, onClick, isRoomSelected }) => {
       onClick={onClick}
       className={`room ${isRoomSelected ? "room--selected" : undefined}`}
     >
-      <img className="room__img" src={Picture} />
+      <img className="room__img" src={Picture} alt="City" />
       <span className="room__name">{Name}</span>
     </div>
   );
