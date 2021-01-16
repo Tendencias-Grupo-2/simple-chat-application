@@ -97,7 +97,8 @@ const Chat = () => {
             <div className="chat__left--inner">
               {infoMessages.map((message) => (
                 <Message
-                  message={message.text + " has joined the chat"}
+                  key={message._id}
+                  message={message.text}
                   createdAt={message.createdAt}
                   userName={message.username}
                   imSender={
@@ -109,6 +110,7 @@ const Chat = () => {
               ))}
               {messages.map((message) => (
                 <Message
+                  key={message._id}
                   message={message.text}
                   createdAt={message.createdAt}
                   userName={message.username}
