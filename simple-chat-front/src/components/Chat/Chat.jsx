@@ -101,7 +101,7 @@ const Chat = () => {
             <div className="chat__left--inner">
               {infoMessages.map((message) => (
                 <Message
-                  key={message}
+                  key={message.createdAt}
                   message={message.text}
                   createdAt={message.createdAt}
                   userName={message.username}
@@ -114,7 +114,7 @@ const Chat = () => {
               ))}
               {messages.map((message) => (
                 <Message
-                  key={message._id}
+                  key={message.createdAt}
                   message={message.text}
                   createdAt={message.createdAt}
                   userName={message.username}

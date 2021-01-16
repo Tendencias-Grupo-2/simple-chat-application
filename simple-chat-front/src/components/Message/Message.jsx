@@ -8,6 +8,9 @@ const Message = ({ message, imSender, createdAt, userName }) => {
 
   return (
     <div className={`message ${imSender === true ? "message--me" : null}`}>
+      {imSender === false ? (
+        <span className="message__username">{userName} says</span>
+      ) : null}
       <span className="message__text">{message}</span>
       <span className="message__time">
         {parsedNumber.day} {parsedNumber.monthShort} {parsedNumber.year}{" "}
