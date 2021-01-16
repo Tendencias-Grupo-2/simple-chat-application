@@ -52,10 +52,7 @@ io.on(emitConnection, (socket) => {
     const user = getUser(socket.id)
     io.to(user.room).emit(emitMessage, generateMessage(user.username, message))
     const Modelmessage = new Message({user: user.username, message: message, room: user.room })
-    Modelmessage.save(function(err) {
-      if (err) return console.error(err);
-      console.log("Added succussfully!")
-    })
+    Modelmessage.save()
   })
 
   socket.on(emitDisconnect, () => {
