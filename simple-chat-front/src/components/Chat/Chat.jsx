@@ -67,7 +67,7 @@ const Chat = () => {
     });
   }, [contextName]);
 
-  if (errorFlag || contextName === "") {
+  if (errorFlag) {
     return <Redirect to="/" />;
   }
 
