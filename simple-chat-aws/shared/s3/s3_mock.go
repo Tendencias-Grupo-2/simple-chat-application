@@ -18,7 +18,7 @@ var (
 	ErrFailure = errors.New("forced failure response")
 )
 
-// Begins S3 mock
+// InitS3Mock Begins S3 mock
 func InitS3Mock() {
 	Client = &mockS3{}
 	ForceUploadMockFail = false

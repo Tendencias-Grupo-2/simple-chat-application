@@ -24,7 +24,7 @@ func NewClient(username, password, serverName string) (*Client, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	connectionStr := fmt.Sprintf("mongodb+srv://%s:%s@%s.xshpz.mongodb.net/", username, password, serverName)
+	connectionStr := fmt.Sprintf("mongodb+srv://%s:%s@%s.mongodb.net/", username, password, serverName)
 
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(
 		connectionStr,
