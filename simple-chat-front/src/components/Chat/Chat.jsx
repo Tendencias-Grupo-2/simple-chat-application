@@ -15,14 +15,15 @@ const socket = io(HOST);
 
 const Chat = () => {
   const [currentRoom, setCurrentRoom] = useState("");
+  const [roomName, setRoomName] = useState("");
   const [users, setUsers] = useState("");
   const [message, setMessage] = useState("");
-  const [infoMessages, setInfoMessages] = useState([]);
   const [messages, setMessages] = useState([]);
   const [errorFlag, setErrorFlag] = useState(0);
   const { contextName } = useContext(userNameContext);
   const { register, handleSubmit, reset } = useForm({});
 
+  /* istanbul ignore next */
   const sendMessage = (data) => {
     if (message) {
       socket.emit("sendMessage", message, () => setMessage(""));
@@ -30,9 +31,9 @@ const Chat = () => {
     }
   };
 
+  /* istanbul ignore next */
   const joinRoom = (roomId) => {
     setMessages([]);
-    setInfoMessages([]);
     socket.emit("join", { username: contextName, room: roomId }, (error) => {
       if (error) {
         alert(error);
@@ -43,15 +44,14 @@ const Chat = () => {
 
   const exitRoom = () => {
     setMessages([]);
-    setInfoMessages([]);
     setCurrentRoom("");
     socket.emit("exitRoom", currentRoom);
   };
 
+  /* istanbul ignore next */
   const switchRoom = (currentRoom, newRoom) => {
     socket.emit("exitRoom", currentRoom);
     setMessages([]);
-    setInfoMessages([]);
     joinRoom(newRoom);
     setCurrentRoom(newRoom);
   };
@@ -59,11 +59,7 @@ const Chat = () => {
   /* istanbul ignore next */
   useEffect(() => {
     socket.on("message", (message) => {
-      if (message.username === "ChatApp") {
-        setInfoMessages((messages) => [...messages, message]);
-      } else {
-        setMessages((messages) => [...messages, message]);
-      }
+      setMessages((messages) => [...messages, message]);
     });
 
     socket.on("roomData", ({ users }) => {
@@ -79,7 +75,7 @@ const Chat = () => {
     <div className="chat">
       <div className="chat__header">
         {currentRoom !== "" ? (
-          <span className="chat__headertext">Contact Name</span>
+          <span className="chat__headertext">{roomName} Chatting Room</span>
         ) : null}
         {currentRoom !== "" ? (
           <span
@@ -95,20 +91,9 @@ const Chat = () => {
         {currentRoom !== "" ? (
           <div className="chat__left">
             <div className="chat__left--inner">
-              {infoMessages.map((message) => (
-                <Message
-                  message={message.text + " has joined the chat"}
-                  createdAt={message.createdAt}
-                  userName={message.username}
-                  imSender={
-                    contextName.toLowerCase() === message.username
-                      ? true
-                      : false
-                  }
-                ></Message>
-              ))}
               {messages.map((message) => (
                 <Message
+                  key={message.createdAt}
                   message={message.text}
                   createdAt={message.createdAt}
                   userName={message.username}
@@ -124,7 +109,7 @@ const Chat = () => {
               {users ? <ActiveUsersList users={users} /> : null}
               <div className="chat__bar">
                 <form
-                  action=""
+                  autoComplete="off"
                   className="chat__barform"
                   onSubmit={handleSubmit(sendMessage)}
                 >
@@ -164,6 +149,7 @@ const Chat = () => {
               Name={room.Name}
               onClick={() => {
                 setCurrentRoom(room.Id);
+                setRoomName(room.Name);
                 currentRoom === ""
                   ? joinRoom(room.Id)
                   : switchRoom(currentRoom, room.Id);
