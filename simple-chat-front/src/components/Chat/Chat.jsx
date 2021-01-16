@@ -24,6 +24,7 @@ const Chat = () => {
   const { contextName } = useContext(userNameContext);
   const { register, handleSubmit, reset } = useForm({});
 
+  /* istanbul ignore next */
   const sendMessage = (data) => {
     if (message) {
       socket.emit("sendMessage", message, () => setMessage(""));
@@ -31,6 +32,7 @@ const Chat = () => {
     }
   };
 
+  /* istanbul ignore next */
   const joinRoom = (roomId) => {
     setMessages([]);
     setInfoMessages([]);
@@ -49,6 +51,7 @@ const Chat = () => {
     socket.emit("exitRoom", currentRoom);
   };
 
+  /* istanbul ignore next */
   const switchRoom = (currentRoom, newRoom) => {
     socket.emit("exitRoom", currentRoom);
     setMessages([]);
@@ -71,10 +74,6 @@ const Chat = () => {
       setUsers(users);
     });
   }, [contextName]);
-
-  useEffect(() => {
-    console.log(messages);
-  }, [messages]);
 
   if (errorFlag) {
     return <Redirect to="/" />;
@@ -131,7 +130,7 @@ const Chat = () => {
               {users ? <ActiveUsersList users={users} /> : null}
               <div className="chat__bar">
                 <form
-                  action=""
+                  autoComplete="off"
                   className="chat__barform"
                   onSubmit={handleSubmit(sendMessage)}
                 >
