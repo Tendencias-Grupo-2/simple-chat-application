@@ -9,6 +9,7 @@ import roomsInfo from "../../samples/roomsInfo.json";
 import { userNameContext } from "../../utils/userNameContext";
 import { Redirect } from "react-router-dom";
 import ActiveUsersList from "../ActiveUsersList/ActiveUsersList";
+import ScrollToBottom from "react-scroll-to-bottom";
 
 const HOST = process.env.REACT_APP_STAGING_HOST;
 const socket = io(HOST);
@@ -90,21 +91,24 @@ const Chat = () => {
       <div className="chat__body">
         {currentRoom !== "" ? (
           <div className="chat__left">
-            <div className="chat__left--inner">
-              {messages.map((message) => (
-                <Message
-                  key={message.createdAt}
-                  message={message.text}
-                  createdAt={message.createdAt}
-                  userName={message.username}
-                  imSender={
-                    contextName.toLowerCase() === message.username
-                      ? true
-                      : false
-                  }
-                ></Message>
-              ))}
-            </div>
+            <ScrollToBottom mode="bottom" className="chat__messagecontainer">
+              <div className="chat__left--inner">
+                {messages.map((message) => (
+                  <Message
+                    key={message.createdAt}
+                    message={message.text}
+                    createdAt={message.createdAt}
+                    userName={message.username}
+                    imSender={
+                      contextName.toLowerCase() === message.username
+                        ? true
+                        : false
+                    }
+                  ></Message>
+                ))}
+              </div>
+            </ScrollToBottom>
+
             <div>
               {users ? <ActiveUsersList users={users} /> : null}
               <div className="chat__bar">
