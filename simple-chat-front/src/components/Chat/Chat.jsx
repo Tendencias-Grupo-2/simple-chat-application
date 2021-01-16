@@ -5,7 +5,7 @@ import Room from "../Room/Room";
 import Message from "../Message/Message";
 import { BiMailSend, BiExit } from "react-icons/bi";
 import "./Chat-Style.css";
-import roomsMockData from "../../samples/roomsMockData.json";
+import roomsInfo from "../../samples/roomsInfo.json";
 import { userNameContext } from "../../utils/userNameContext";
 import { Redirect } from "react-router-dom";
 import ActiveUsersList from "../ActiveUsersList/ActiveUsersList";
@@ -155,16 +155,18 @@ const Chat = () => {
           </div>
         )}
         <div className="chat__right">
-          {roomsMockData.map((room) => (
+          {roomsInfo.map((room) => (
             <Room
-              key={room.RoomId}
-              isRoomSelected={room.RoomId === currentRoom}
-              roomId={room.RoomId}
+              key={room.Id}
+              isRoomSelected={room.Id === currentRoom}
+              Id={room.Id}
+              Picture={room.Picture}
+              Name={room.Name}
               onClick={() => {
-                setCurrentRoom(room.RoomId);
+                setCurrentRoom(room.Id);
                 currentRoom === ""
-                  ? joinRoom(room.RoomId)
-                  : switchRoom(currentRoom, room.RoomId);
+                  ? joinRoom(room.Id)
+                  : switchRoom(currentRoom, room.Id);
               }}
             ></Room>
           ))}
