@@ -1,14 +1,15 @@
 const users = []
 
 const addUser = ({id, username, room}) => {
-    username = username.trim().toLowerCase()
+  if(!username || !room){
+    return{
+        error: 'username and room are required'
+    }
+  }  
+  
+  username = username.trim().toLowerCase()
     room = room.trim().toLowerCase()
 
-    if(!username || !room){
-        return{
-            error: 'username and room are required'
-        }
-    }
     const existingUser = users.find((user)=>user.room === room && user.username === username)
     if(existingUser){
         return {
@@ -32,6 +33,7 @@ const getUserInRoom = (room) => {
     room = room.trim().toLowerCase()
     return users.filter((user) => user.room === room)
 }
+
 module.exports = {
     getUser,
     getUserInRoom,

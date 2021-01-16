@@ -9,6 +9,7 @@ const generateMessageLog = (username, text, _id) =>({
     createdAt: new Date().getTime(),
     _id
 })
+
 module.exports = {
     generateMessage,
     generateMessageLog
