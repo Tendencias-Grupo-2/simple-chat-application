@@ -1,44 +1,68 @@
-// const request = require('supertest')
-// const app = require('../src/app')
-// const Message = require('../src/models/messageModel')
-// const mongoose = require('mongoose')
+const { addUser, getUser, removeUser, getUserInRoom } = require("../src/utils/users")
 
-// const {userOneId, userOne, setupDatabase} = require("./fixtures/db")
+describe('Add user tests', () => {
+  const userProperties = {
+    id: "011122",
+    username: "username",
+    room: "room_0"
+  }
 
-// beforeEach(async () => {
-//      await setupDatabase()
-//   })
-//   afterAll(done => {
-//      mongoose.connection.close()
-//      done()
-//    })
+  it('should add an user', () => {
+    expect(addUser(userProperties)).toEqual({user: userProperties})
+  })
 
-//   test('Should create new message', async()=>{
-//     const Modelmessage = new Message({user: 'Test User', message: 'Hello', room: '01' })
-//     Modelmessage.save()  
-//     const user = username.find(Modelmessage)
-//     expect(user.username).toBe('Test User')
+  it('is required to add username and room fields', () => {
+    expect(addUser({})).toEqual({error: "username and room are required"})
+  })
 
-    // const response = await request(server)
-    //   .post('/users')
-    //   .send({
-    //      username: 'Test User'
-    //   })
-    //   .expect(201)
-    //   const user = await User.findById(response.body._id)
-//  })
+  it('should return error on adding existing user', () => {
+    addUser(userProperties)
+    expect(addUser(userProperties)).toEqual({error: "username is alredy in use in this sesion"})
+  })
+  
+  it('should be able to get a saved used', () => {
+    addUser(userProperties)
+    expect(getUser(userProperties.id)).toEqual(userProperties)
+  })
 
-//  test('Should find user by id', async() =>{
-//      const response = await request(server)
-//      .get('/users')
-//      .send({
-//          _id: userOneId
-//      })
-//      .expect(200)
-//      const user = await User.findById(response.body._id)
-//      expect(user.username).toBe(userOne.username)
-//  })
+  it('be able to remove user', () => {
+    addUser(userProperties)
+    expect(getUser(userProperties.id)).toEqual(userProperties)
+    
+    removeUser(userProperties.id)
+    expect(getUser(userProperties.id)).toEqual(undefined)
+  })
 
-test('Should return true', () =>{
-    expect(1).toEqual(1)
+  it('should be able to get all users within a room', () => {
+    const userProperties1 = {
+      id: "011122",
+      username: "username",
+      room: "room_0"
+    }
+    const userProperties2 = {
+      id: "011122",
+      username: "username1",
+      room: "room_0"
+    }
+    const userProperties3 = {
+      id: "011122",
+      username: "username2",
+      room: "room_1"
+    }
+        
+    addUser(userProperties1)
+    expect(getUser(userProperties.id)).toEqual(userProperties)
+  
+    addUser(userProperties2)
+    expect(getUser(userProperties.id)).toEqual(userProperties)
+  
+    addUser(userProperties3)
+    expect(getUser(userProperties.id)).toEqual(userProperties)
+    
+    expect(getUserInRoom("room_0").length).toEqual(2)
+
+    expect(getUserInRoom("room_0")).toEqual(
+      expect.not.arrayContaining([userProperties3])
+    )
+  })
 })
