@@ -3,6 +3,13 @@ const generateMessage = (username,text) =>({
     text,
     createdAt: new Date().getTime()
 })
+const generateMessageLog = (username, text, _id) =>({
+    username,
+    text,
+    createdAt: new Date().getTime(),
+    _id
+})
 module.exports = {
-    generateMessage
+    generateMessage,
+    generateMessageLog
 }

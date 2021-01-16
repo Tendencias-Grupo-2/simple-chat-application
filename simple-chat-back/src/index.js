@@ -3,7 +3,7 @@ const path = require('path')
 const http = require('http')
 const cors = require('cors')
 const socketio = require('socket.io')
-const { generateMessage } = require('./utils/messages')
+const { generateMessage, generateMessageLog } = require('./utils/messages')
 const { getUser, getUserInRoom, removeUser, addUser } = require('./utils/users')
 const {
   emitRoomData,
@@ -50,9 +50,9 @@ io.on(emitConnection, (socket) => {
 
   socket.on(emitSendMessage, (message) => {
     const user = getUser(socket.id)
-    io.to(user.room).emit(emitMessage, generateMessage(user.username, message))
     const Modelmessage = new Message({user: user.username, message, room: user.room })
     Modelmessage.save()
+    io.to(user.room).emit(emitMessage, generateMessageLog(user.username, message, Modelmessage._id ))
   })
 
   socket.on(emitDisconnect, () => {
