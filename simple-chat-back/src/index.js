@@ -19,7 +19,7 @@ require('./db/mongoose')
 const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
-
+const Message = require('./models/messageModel')
 
 const updateRoomData = (user) => {
   io.to(user.room).emit(emitRoomData, {
@@ -51,6 +51,8 @@ io.on(emitConnection, (socket) => {
   socket.on(emitSendMessage, (message) => {
     const user = getUser(socket.id)
     io.to(user.room).emit(emitMessage, generateMessage(user.username, message))
+    const Modelmessage = new Message({user: user.username, message, room: user.room })
+    Modelmessage.save()
   })
 
   socket.on(emitDisconnect, () => {
