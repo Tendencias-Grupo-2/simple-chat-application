@@ -24,17 +24,17 @@ const Chat = () => {
   const { contextName } = useContext(userNameContext);
   const { register, handleSubmit, reset } = useForm({});
 
-  /* istanbul ignore next */
   const sendMessage = (data) => {
     if (message) {
+      /* istanbul ignore next */
       socket.emit("sendMessage", message, () => setMessage(""));
       data.message = reset();
     }
   };
 
-  /* istanbul ignore next */
   const joinRoom = (roomId) => {
     setMessages([]);
+    /* istanbul ignore next */
     socket.emit("join", { username: contextName, room: roomId }, (error) => {
       if (error) {
         alert(error);
@@ -46,23 +46,25 @@ const Chat = () => {
   const exitRoom = () => {
     setMessages([]);
     setCurrentRoom("");
+    /* istanbul ignore next */
     socket.emit("exitRoom", currentRoom);
   };
 
-  /* istanbul ignore next */
   const switchRoom = (currentRoom, newRoom) => {
+    /* istanbul ignore next */
     socket.emit("exitRoom", currentRoom);
     setMessages([]);
     joinRoom(newRoom);
     setCurrentRoom(newRoom);
   };
 
-  /* istanbul ignore next */
   useEffect(() => {
+    /* istanbul ignore next */
     socket.on("message", (message) => {
       setMessages((messages) => [...messages, message]);
     });
 
+    /* istanbul ignore next */
     socket.on("roomData", ({ users }) => {
       setUsers(users);
     });

@@ -3,7 +3,6 @@ import "./Message-Style.css";
 import PseudoDateParser from "@pseudomera/date-parser/dist/dateParser";
 
 const Message = ({ message, imSender, isInfoMessage, createdAt, userName }) => {
-  /* istanbul ignore next */
   const parsedNumber = PseudoDateParser(createdAt);
 
   return (
