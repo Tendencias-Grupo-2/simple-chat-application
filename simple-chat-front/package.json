@@ -36,7 +36,8 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"],
+      "react-app/jest"
+    ],
     "env": {
       "es6": true,
       "browser": false
@@ -46,14 +47,14 @@
         "error"
       ],
       "no-console": [
-        "warm", 
+        "warm",
         1
       ],
       "code": [
         "warm",
         100
-        ],
-      "ignoreStrings":[
+      ],
+      "ignoreStrings": [
         "warm"
       ],
       "tabWidth": [
@@ -61,40 +62,40 @@
         5
       ],
       "indent": [
-        "warm", 
+        "warm",
         2
       ],
       "camelcase": [
         "error"
       ]
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/components/**/*.{js,jsx}"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "functions": 70,
-        "lines": 70,
-        "statements": 70
+    },
+    "jest": {
+      "collectCoverageFrom": [
+        "src/components/**/*.{js,jsx}"
+      ],
+      "coverageThreshold": {
+        "global": {
+          "functions": 70,
+          "lines": 70,
+          "statements": 70
+        }
       }
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    },
+    "devDependencies": {
+      "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
+      "eslint-plugin-cypress": "^2.11.2"
     }
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
-    "eslint-plugin-cypress": "^2.11.2"
   }
-}
 }
