@@ -39,17 +39,34 @@
       "react-app/jest"],
     "env": {
       "es6": true,
-      "browser": false,
-      "jest": true
+      "browser": false
     },
     "rules": {
-      "no-case-declarations": ["error"],
-      "no-console": 1,
-      "code": ["warm", 100],
-      "ignoreStrings":["warm"],
-      "tabWidth": 5,
-      "indent": ["warm", 2],
-      "camelcase": ["error"]
+      "no-case-declarations": [
+        "error"
+      ],
+      "no-console": [
+        "warm", 
+        1
+      ],
+      "code": [
+        "warm",
+        100
+        ],
+      "ignoreStrings":[
+        "warm"
+      ],
+      "tabWidth": [
+        "warm",
+        5
+      ],
+      "indent": [
+        "warm", 
+        2
+      ],
+      "camelcase": [
+        "error"
+      ]
   },
   "jest": {
     "collectCoverageFrom": [
