@@ -104,11 +104,13 @@ const Chat = () => {
                         ? true
                         : false
                     }
+                    isInfoMessage={
+                      message.username === "ChatApp" ? true : false
+                    }
                   ></Message>
                 ))}
               </div>
             </ScrollToBottom>
-
             <div>
               {users ? <ActiveUsersList users={users} /> : null}
               <div className="chat__bar">
