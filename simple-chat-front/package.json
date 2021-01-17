@@ -40,16 +40,16 @@
     "env": {
       "es6": true,
       "browser": false,
-      "node": true
+      "jest": true
     },
     "rules": {
-      "no-case-declarations": "error",
-      "no-console": 1,
+      "no-case-declarations": ["error"],
+      "no-console": [1],
       "code": ["warm", 100],
-      "ignoreStrings": "warm",
-      "tabWidth": 5,
+      "ignoreStrings":["warm"],
+      "tabWidth": [5],
       "indent": ["warm", 2],
-      "camelcase": "error"
+      "camelcase": ["error"]
   },
   "jest": {
     "collectCoverageFrom": [
