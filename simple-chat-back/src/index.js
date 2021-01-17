@@ -3,7 +3,7 @@ const path = require('path')
 const http = require('http')
 const cors = require('cors')
 const socketio = require('socket.io')
-const { generateMessage, generateMessageLog } = require('./utils/messages')
+const {generateMessage, generateMessageLog} = require('./utils/messages')
 const { getUser, getUserInRoom, removeUser, addUser } = require('./utils/users')
 const {
   emitRoomData,
