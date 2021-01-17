@@ -44,10 +44,10 @@
     },
     "rules": {
       "no-case-declarations": ["error"],
-      "no-console": [1],
+      "no-console": 1,
       "code": ["warm", 100],
       "ignoreStrings":["warm"],
-      "tabWidth": [5],
+      "tabWidth": 5,
       "indent": ["warm", 2],
       "camelcase": ["error"]
   },
