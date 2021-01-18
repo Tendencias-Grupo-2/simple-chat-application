@@ -1,15 +1,22 @@
 class Messager {
-  generateMessage = (username,text) =>({
+  // eslint-disable-next-line class-methods-use-this
+generateMessage(username,text){
+  return {
     username,
     text,
     createdAt: new Date().getTime()
-  })
-  generateMessageLog = (username, text, _id) =>({
-      username,
-      text,
-      createdAt: new Date().getTime(),
-      _id
-  })
+  }
+}
+
+// eslint-disable-next-line class-methods-use-this
+generateMessageLog(username, text, _id){
+  return {
+    username,
+    text,
+    createdAt: new Date().getTime(),
+    _id
+  }
+}
 }
 
 module.exports = new Messager()
