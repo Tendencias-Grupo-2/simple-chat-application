@@ -31,7 +31,7 @@ const UserNameInput = () => {
         <span>Joined: </span>
         <span className="userinput__userjoined">{String(userJoined)}</span>
       </div>
-      <span className="userinput__title">Give us your username!</span>
+      <span className="userinput__title">Give us your username!!</span>
       <form
         action=""
         className="userinput__form"
