@@ -2,12 +2,15 @@ import React from "react";
 import "./Message-Style.css";
 import PseudoDateParser from "@pseudomera/date-parser/dist/dateParser";
 
-const Message = ({ message, imSender, createdAt, userName }) => {
-  /* istanbul ignore next */
+const Message = ({ message, imSender, isInfoMessage, createdAt, userName }) => {
   const parsedNumber = PseudoDateParser(createdAt);
 
   return (
-    <div className={`message ${imSender === true ? "message--me" : null}`}>
+    <div
+      className={`message ${imSender === true ? "message--me" : null} ${
+        isInfoMessage === true ? "message--info" : null
+      } `}
+    >
       {imSender === false ? (
         <span className="message__username">{userName} says</span>
       ) : null}
